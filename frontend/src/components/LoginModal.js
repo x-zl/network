@@ -53,7 +53,7 @@ class LoginModal extends React.Component {
     const { errorMessage } = this.state;
     const { isOpen, toggle, onSave } = this.props;
     return (
-      <Modal isOpen={isOpen} toggle={toggle}>
+      <Modal isOpen={true} toggle={toggle}>
         <ModalHeader toggle={toggle}>Log in</ModalHeader>
         <ModalBody>
           <Form>

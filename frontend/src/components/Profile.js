@@ -7,8 +7,15 @@ import {
   Input,
   FormText
 } from 'reactstrap';
+import {
+  Link
+} from "react-router-dom"
 import './Profile.css';
-import handleResponse from '../fetchClient/fetchHandler';
+import {
+  handleResponse,
+  handleHeaderWithAuthToken,
+  handleUrl,
+} from '../fetchClient/fetchHandler';
 /*
 # write read
 name = models.CharField(null=True, max_length=50)
@@ -25,27 +32,29 @@ export default class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      major: '',
-      shcool: '',
-      IDCard: '',
-      phone_number: '',
-      birth_date: '',
+      formInfo: {
+        name: '',
+        major: '',
+        shcool: '',
+        IDCard: '',
+        phone_number: '',
+        birth_date: '',
+      },
+      // if change since last submit
+      couldSave: false,
     };
   }
 
   componentDidMount() {
     console.log("get data from /profile");
-    fetch('http://47.100.162.64:8000/profile', {
+    fetch(handleUrl('profile/'), {
       method: 'GET',
-      headers: {
-        Authorization: `JWT ${localStorage.getItem('token')}`
-      },
+      headers: handleHeaderWithAuthToken(),
     })
       .then(res => handleResponse(res))
       .then(json => {
         console.log("last profile", json)
-        this.setState({...json });
+        this.setState( {formInfo: {...json} });
       }).catch(err => {
         console.log("get last profile error", err);
       });
@@ -53,26 +62,22 @@ export default class Profile extends React.Component {
 
   handleChange = e => {
     const {name, value} = e.target;
-
-    this.setState(prevstate => {
-      const newState = { ...prevstate };
-      newState[name] = value;
-      return newState;
-    });
+    const formInfo = { ...this.state.formInfo, [name]: value };
+    this.setState({formInfo, couldSave: true});
   };
 
   handle_profile_submit = (data) => {
     console.log("send", data, "to /profile");
-    fetch('http://47.100.162.64:8000/profile/', {
+    fetch(handleUrl('profile/'), {
       method: 'PUT',
-      headers: {
+      headers: handleHeaderWithAuthToken({
         'Content-Type': 'application/json',
-        Authorization: `JWT ${localStorage.getItem('token')}`
-      },
+      }),
       body: JSON.stringify(data)
     })
       .then(res => handleResponse(res))
       .then(json => {
+        this.setState({couldSave: false});
         console.log("submit profile success", json)
       }).catch(err => {
         console.log("submit profile error", err);
@@ -80,6 +85,7 @@ export default class Profile extends React.Component {
   };
 
   render() {
+    const { formInfo, hasChanged, couldSave } = this.state;
     console.log('state', this.state);
     return (
       <Form style={{width: "300px"}}>
@@ -88,7 +94,7 @@ export default class Profile extends React.Component {
           <Input
             type="text"
             name="name"
-            value={this.state.name||''}
+            value={formInfo.name||''}
             onChange={this.handleChange}
             placeholder="Enter Your Name"
           />
@@ -98,7 +104,7 @@ export default class Profile extends React.Component {
           <Input
             type="text"
             name="major"
-            value={this.state.major||''}
+            value={formInfo.major||''}
             onChange={this.handleChange}
             placeholder="Enter major"
           />
@@ -108,7 +114,7 @@ export default class Profile extends React.Component {
           <Input
             type="text"
             name="IDCard"
-            value={this.state.IDCard||''}
+            value={formInfo.IDCard||''}
             onChange={this.handleChange}
             placeholder="Enter IDCard"
           />
@@ -118,14 +124,22 @@ export default class Profile extends React.Component {
           <Input
             type="text"
             name="phone_number"
-            value={this.state.phone_number||''}
+            value={formInfo.phone_number||''}
             onChange={this.handleChange}
             placeholder="Enter phone_number"
           />
         </FormGroup>
-        <Button onClick={() => this.handle_profile_submit(this.state)}>
-          Submit
-        </Button>
+        <Button
+          onClick={() => this.handle_profile_submit(formInfo)}
+          disabled={!couldSave}
+        >
+          保存信息
+        </Button>{' '}
+        <Link to="/profile/pay">
+          <Button>
+            支付报名
+          </Button>
+        </Link>
       </Form>
     );
   }

@@ -13,6 +13,7 @@ class Profile(models.Model):
     phone_number = models.CharField(null=True, blank=True, max_length=10)
     birth_date = models.DateField(null=True, blank=True)
     # read_only
+    #trade_no = models.CharField(max_length=100, null=True, blank=True)
     grade = models.PositiveIntegerField(null=True)
     pay_status = models.BooleanField(default=False)
 

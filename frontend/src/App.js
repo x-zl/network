@@ -6,12 +6,19 @@ import {
   Link
 } from "react-router-dom"
 
+import ExamInfo from './components/examInfo'
 import Profile from './components/Profile';
 import Home from "./components/Home"
 import TopNav from './components/TopNav';
 import LoginModal from './components/LoginModal';
 import SignupModal from './components/SignupModal';
-import handleResponse from './fetchClient/fetchHandler';
+import Pay from "./components/Pay";
+import Exams from "./components/Exams";
+import {
+  handleResponse,
+  handleHeaderWithAuthToken,
+  handleUrl,
+} from './fetchClient/fetchHandler';
 import './App.css';
 
 class App extends Component {
@@ -27,10 +34,8 @@ class App extends Component {
   componentDidMount() {
     const hasToken = !!localStorage.getItem('token');
     if (hasToken) {
-      fetch('http://47.100.162.64:8000/accounts/current_user/', {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem('token')}`
-        }
+      fetch(handleUrl('accounts/current_user/'), {
+        headers: handleHeaderWithAuthToken(),
       })
         .then(res => {
           return handleResponse(res);
@@ -48,7 +53,7 @@ class App extends Component {
 
   handle_login = (data) => {
     console.log("send", data, "to /token-auth");
-    fetch('http://47.100.162.64:8000/token-auth/', {
+    fetch(handleUrl('token-auth/'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -72,7 +77,7 @@ class App extends Component {
 
   handle_signup = (data) => {
     console.log("send", data, "to /accounts/users");
-    fetch('http://47.100.162.64:8000/accounts/users/', {
+    fetch(handleUrl('accounts/users/'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -122,19 +127,34 @@ class App extends Component {
           />
           {display === 'login' &&
             <LoginModal
-              isOpen={display==='login'}
+              isOpen={true}
               toggle={this.display_form}
               onSave={this.handle_login}
             />
           }
           {display === 'signup' &&
             <SignupModal
-              isOpen={display==='signup'}
+              isOpen={true}
               toggle={this.display_form}
               onSave={this.handle_signup}
             />
           }
-          <Home logged_in={this.state.logged_in} username={this.state.username}/>
+
+          <Switch>
+            <Route exact path="/">
+              <Home logged_in={this.state.logged_in} username={this.state.username}/>
+            </Route>
+            <Route exact path="/profile/pay">
+              <Pay />
+            </Route>
+            <Route exact path="/profile">
+              <Profile />
+            </Route>
+            <Route exact path="/profile/exams">
+              <Exams />
+            </Route>
+          </Switch>
+
         </Router>
       </div>
     );

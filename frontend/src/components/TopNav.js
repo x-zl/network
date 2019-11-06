@@ -13,6 +13,10 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import {
+  Route,
+  Link,
+} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './TopNav.css';
 
@@ -62,9 +66,11 @@ const TopNav = (props) => {
                 Profile
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>
-                  Option 1
-                </DropdownItem>
+                <Link to='profile/exams'>
+                  <DropdownItem>
+                    查询考试
+                  </DropdownItem>
+                </Link>
                 <DropdownItem>
                   Option 2
                 </DropdownItem>

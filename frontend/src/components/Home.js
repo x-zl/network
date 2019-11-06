@@ -17,9 +17,6 @@ const Home = (props) => {
           <Link to="/profile">
             点击完善资料
           </Link>
-          <Route exact path="/profile">
-            <Profile />
-          </Route>
         </>
       ) : 'Please Log In'}
     </h3>

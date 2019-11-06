@@ -1,5 +1,4 @@
-#from .utils.alipay import AliPay
-from ALI.AliPay import AliPay
+from .utils.alipay import AliPay
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
@@ -10,6 +9,7 @@ from rest_framework import permissions
 
 from .settings import ALIPAY_APPID, APP_PRIVATE_KEY_PATH, ALIPAY_PUBLIC_KEY_PATH, ALIPAY_DEBUG, ALIPAY_URL
 from .models import OrderInfo
+from enrollmentSystem.models import Profile
 from .serializers import OrderInfoSerializer
 
 def get_server_ip():
@@ -19,7 +19,7 @@ def create_alipay():
     server_ip = get_server_ip()
     alipay = AliPay(
         appid = ALIPAY_APPID,
-        app_notify_url = "http://{}:8000/alipayreturn".format(server_ip),
+        app_notify_url = "http://47.100.162.64:8000/alipayreturn/",
         app_private_key_path = APP_PRIVATE_KEY_PATH,
         alipay_public_key_path = ALIPAY_PUBLIC_KEY_PATH,
         sign_type = "RSA2",
@@ -33,31 +33,35 @@ def get_alipay_url(alipay, total_amount, trade_no):
         out_trade_no=trade_no,  #订单id
         total_amount=str(total_amount), #支付宝总金额
         subject="networkTestPay", #订单标题
-        return_url="http://{}:8000/alipayreturn".format(server_ip),
-        notify_url="http://{}:8000/alipayreturn".format(server_ip)
+        return_url="http://{}:8000/alipayreturn/".format(server_ip),
+        notify_url="http://47.100.162.64:8000/alipayreturn/"
     )
     print('---get_url---')
     print(order_string)
     return ALIPAY_URL+order_string
 
-def get_trade_no(self):
-    from random import Random
-    random_ins = Random()
-    trade_no = "{time_str}{userid}{ranstr}".format(time_str=time.strftime("%Y%m%d%H%M%S"),
-                userid=self.context["request"].user.id,
-                ranstr=random_ins.randint(10, 99))
-    return trade_no
 
+def generate_trade_no(self, user_id, exam_number):
+    suffix = '3298103829253479'
+    trade_no = "{exam_number}{userid}{suffix}".format(exam_number=exam_number,
+        userid=user_id, suffix=suffix)
+    return trade_no
 
 # Create your views here.
 class OrderView(APIView):
     # permission_classes = (IsAuthenticated, )
-    
+
     def get(self, request):
         server_ip = get_server_ip()
         print("---------OrderView-get----------")
-        print(request.data)
-        trade_no = request.data.trade_no
+        print('data', request.data)
+        print('userid', request.user.id)
+        exam_number = request.data.get('exam_number', None)
+        if exam_number == None:
+            return Response({'pay_status': 'no exam_number'}, status=HTTP_400_BAD_REQUEST)
+
+        trade_no = generate_trade_no(request.user.id, exam_number)
+
         alipay = create_alipay()
         result = alipay.api_alipay_trade_query(out_trade_no=trade_no)
         print(result)
@@ -65,14 +69,22 @@ class OrderView(APIView):
             try:
                 order=OrderInfo.objects.get(pk=trade_no)
             except:
-                order.pay_status = 'unpaid'
-                return Response({'pay_status': 'failed1'})
+                return Response({'pay_status': 'invalid trade_no', 'finished': 'false'})
+
+            try:
+                profile=Profile.objects.get(user=request.user);
+            except:
+                return Response({'pay_status': 'cannot find profile', 'finished': 'false'})
 
             order.pay_status = 'success'
-            order.save()
-            return Response({'pay_status': 'success'})
+            # 生成考场号
 
-        return Response({'pay_status': 'failed2'})
+            order.save()
+            return Response({'pay_status': 'success',
+                            'student_id': "{0}{1}".format(exam_number ,str(profile.IDCard)),
+                            'finished': 'true'})
+
+        return Response({'pay_status': 'failed2', 'finished': 'false'})
 
 
     def post(self, request):
@@ -113,7 +125,7 @@ class AliPayAPI(APIView):
         alipay = create_alipay()
         print("---------AliPayAPI-get----------")
 
-        
+
         params = request.GET.dict()
         sign = params.pop('sign', None)
 
@@ -135,16 +147,20 @@ class AliPayAPI(APIView):
             post_dict[k] = v[0]
 
         sign = post_dict.pop('sign', None)
-
+        print(post_dict)
         verify_result = alipay.verify(post_dict, sign)
         if verify_result:
             out_trade_no = post_dict.get('out_trade_no')
             trade_status = post_dict.get('trade_status')
-            print(datetime.now())
+            tmp = OrderInfo.objects.get(trade_no=out_trade_no)
+            Profile.objects.filter(user=tmp.user).update(pay_status = True)
+            #print(datetime.now())
+            print("------post-end3------")
             OrderInfo.objects.filter(trade_no=out_trade_no).update(
                 pay_status = trade_status,
                 pay_time = datetime.now(),
             )
-
+            print("------post-end2------")
+        print("------post-end------")
         # 给支付宝服务器返回，表明已经收到异步通知
         return Response('success')

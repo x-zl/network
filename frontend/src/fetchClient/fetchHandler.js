@@ -1,4 +1,6 @@
-function handleResponse (response) {
+const BackendURL = 'http://47.100.162.64:8000/'
+
+export function handleResponse (response) {
   let contentType = response.headers.get('content-type')
   if (contentType.includes('application/json')) {
     return handleJSONResponse(response)
@@ -38,4 +40,23 @@ function handleTextResponse (response) {
     })
 }
 
-export default handleResponse;
+export function handleHeaderWithAuthToken(headers={}) {
+  const newHeaders = { ...headers };
+  newHeaders.Authorization = `JWT ${localStorage.getItem('token')}`;
+  return newHeaders;
+}
+
+export function handleUrl (url, param=undefined) {
+  const newUrl = `${BackendURL}${url}`;
+  if (!param) {
+    return newUrl;
+  }
+  if (newUrl.endsWith('/')) {
+    newUrl = newUrl.slice(0,-1);
+  }
+  newUrl = `${newUrl}?`
+  for (let [key, value] of Object.entries(param)) {
+    newUrl = `${newUrl}${key}=${value}&`;
+  }
+  return newUrl.slice(0,-1);
+}

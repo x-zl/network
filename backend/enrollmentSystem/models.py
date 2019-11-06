@@ -7,19 +7,15 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # write read
     name = models.CharField(null=True, max_length=50)
-    sex = models.CharField(null=True, max_length=50)
     major = models.CharField(null=True, blank=True, max_length=100)
     school = models.CharField(null=True, blank=True, max_length=100)
     IDCard = models.CharField(null=True, unique=True, max_length=50)
     phone_number = models.CharField(null=True, blank=True, max_length=10)
     birth_date = models.DateField(null=True, blank=True)
     # read_only
-    ex_addr = models.CharField(null=True, blank=True, max_length=100)#考试地点
-    if_test = models.BooleanField(default=False) #是否有要参加的考试，报名后置1
     grade = models.PositiveIntegerField(null=True)
     pay_status = models.BooleanField(default=False)
-    pay_num = models.CharField(null=True, blank=True, max_length=100)#考试费订单号，用于查询
-    
+
     def __str__(self):
         return f'{self.user.username}'
 

@@ -18,7 +18,7 @@ from django.urls import path, include
 from rest_framework import routers
 from enrollmentSystem import views
 from rest_framework_jwt.views import obtain_jwt_token
-from pay import views as vw
+
 router = routers.DefaultRouter()
 # router.register(r'todos', views.TodoView, 'todo')
 
@@ -28,8 +28,5 @@ urlpatterns = [
     path('token-auth/', obtain_jwt_token),
     path('accounts/', include('accounts.urls')),
     path('', include('enrollmentSystem.urls')),
-    path('index/', vw.index),
-    path('page1/', vw.page1),
-    path('page2/', vw.page2),
-    path('page3/', vw.page3)
+    path('', include('trade.urls')),
 ]

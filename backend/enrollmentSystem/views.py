@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .serializers import ProfileSerializer,ShowSerializer
+from .serializers import ProfileSerializer
 from accounts.serializers import UserSerializer, UserSerializerWithToken
 from .utils import klog
 
@@ -22,11 +22,11 @@ class UserProfileAPI(APIView):
             klog('authenticated', profile_data)
             profile_serializer = ProfileSerializer(profile_data)
             return Response(profile_serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, *args, **kwargs):
         klog(__name__)
-        # serializer = UserSerializer(data=request.user)
+        # serializer = UserSerializer(user)
         user = request.user
         profile = user.profile
         if user.is_authenticated:
@@ -36,15 +36,7 @@ class UserProfileAPI(APIView):
                 profile_serializer.save()
                 return Response(profile_serializer.data)
             return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def show(self, request, **kwargs):
-        user = request.user
-        if user.is_authenticated:
-            profile_data = user.profile
-            profile_serializer = ShowSerializer(profile_data)
-            return Response(profile_serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 # Create your views here.
 # from rest_framework import viewsets # curd operation

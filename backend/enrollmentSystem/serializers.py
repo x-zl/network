@@ -17,12 +17,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ('user', 'name', 'major', 'school', 'IDCard', 'phone_number')
 
-#考前信息确认
-class ShowSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Profile
-        fields = ('name', 'sex', 'major', 'school', 'IDCard', 'phone_number')
 
 # change
 class UserProfileCreateSerializer(serializers.ModelSerializer):

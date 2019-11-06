@@ -108,8 +108,8 @@ class OrderView(APIView):
                 order = serializer.save()
                 tmmp = order.exam_number
                 print(tmmp)
-                order.trade_no = generate_trade_no(user.id,tmmp)
-                order.save()
+                #order.trade_no = generate_trade_no(user.id,tmmp)
+                #order.save()
                 print('order--trade_no')
                 print(order.trade_no)
                 alipay = create_alipay()

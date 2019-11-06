@@ -23,9 +23,8 @@ class OrderInfoSerializer(serializers.ModelSerializer):
         # random_ins = Random()
         # time_str=time.strftime("%Y%m%d%H%M%S")
         # ranstr=random_ins.randint(10, 99)
-        suffix = '3298103829253479'
-        trade_no = "{exam_number}{userid}{suffix}".format(exam_number=exam_number,
-            userid=self.context["request"].user.id, suffix=suffix)
+        suffix = '329810382'
+        trade_no = "329810382{userid}.{exam_number}".format(userid=self.context["request"].user.id,exam_number=exam_number)
         return trade_no
 
     def create(self, validated_data):

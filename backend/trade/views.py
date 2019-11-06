@@ -41,10 +41,10 @@ def get_alipay_url(alipay, total_amount, trade_no):
     return ALIPAY_URL+order_string
 
 
-def generate_trade_no(self, user_id, exam_number):
-    suffix = '3298103829253479'
-    trade_no = "{exam_number}{userid}{suffix}".format(exam_number=exam_number,
-        userid=user_id, suffix=suffix)
+def generate_trade_no(user_id, exam_number):
+    suffix = '329810382'
+    trade_no = "329810382{userid}.{exam_number}".format(suffix=suffix, userid=user_id,exam_number=exam_number)
+    print(trade_no)
     return trade_no
 
 # Create your views here.
@@ -78,8 +78,9 @@ class OrderView(APIView):
 
             order.pay_status = 'success'
             # 生成考场号
-
+            
             order.save()
+            
             return Response({'pay_status': 'success',
                             'student_id': "{0}{1}".format(exam_number ,str(profile.IDCard)),
                             'finished': 'true'})
@@ -100,9 +101,16 @@ class OrderView(APIView):
             serializer = OrderInfoSerializer(data=request.data, context={
                 "request": self.request,
             })
+            #print(serializer)
+            
             if serializer.is_valid():
-                print('order valid')
+                print('order--exam_number')
                 order = serializer.save()
+                tmmp = order.exam_number
+                print(tmmp)
+                order.trade_no = generate_trade_no(user.id,tmmp)
+                order.save()
+                print('order--trade_no')
                 print(order.trade_no)
                 alipay = create_alipay()
 
@@ -152,16 +160,54 @@ class AliPayAPI(APIView):
         if verify_result:
             out_trade_no = post_dict.get('out_trade_no')
             trade_status = post_dict.get('trade_status')
-            tmp = OrderInfo.objects.get(trade_no=out_trade_no)
-            Profile.objects.filter(user=tmp.user).update(pay_status = True)
+            try:
+                tmp = OrderInfo.objects.get(trade_no=out_trade_no)
+            except:
+                pass
+            print("tmp.trade_no" + tmp.trade_no)
+            try:
+                profile = Profile.objects.get(user=tmp.user)
+            except:
+                pass
+            print("profile name:"+profile.name)
             #print(datetime.now())
             print("------post-end3------")
             OrderInfo.objects.filter(trade_no=out_trade_no).update(
                 pay_status = trade_status,
                 pay_time = datetime.now(),
             )
-            #tp = Profile.objects.get(user=tmp.user)
-            #ExamInfo.objects.create(user=tmp.user,name=tp.name,
+            
+            #根据订单号将考生信息放入考试表中
+            if ExamInfo.objects.filter(ex_type=out_trade_no.split('.')[1]).count() == 0:
+                try:
+                    typ = out_trade_no.split('.')[1]
+                    idd = "160023"+typ+"0010001"
+                    print(typ,idd)
+                    user = profile.user
+                    ExamInfo.objects.create(user=user,name=profile.name,stu_id=1,ex_id=idd,
+                                            ex_addr=1,ex_type=typ,grade=0)
+                except:
+                    pass
+                print("----in-if-----")
+                #print(ExamInfo.objects.filter(ex_type=out_trade_no.split('.')[1]).latest('stu_id').ex_id)
+            else:
+                b=ExamInfo.objects.filter(ex_type=out_trade_no.split('.')[1]).latest('stu_id')
+                num = b.stu_id + 1
+                addr = num / 30 + 1
+                typ = out_trade_no.split('.')[1]
+                s = '%04d' % num
+                e = '%03d' % addr
+                idd = "160023"+out_trade_no.split('.')[1]+e+s
+                try:
+                    ExamInfo.objects.create(user=user,name=profile.name,stu_id=num,ex_id=idd,
+                                            ex_addr=addr,ex_type=typ,grade=0)
+                except:
+                    pass
+                
+                print("----in-else----")
+                #print(ExamInfo.objects.filter(ex_type=out_trade_no.split('.')[1]).latest('stu_id').ex_id)
+                
+            
             print("------post-end2------")
         print("------post-end------")
         # 给支付宝服务器返回，表明已经收到异步通知

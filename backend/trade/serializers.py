@@ -49,6 +49,6 @@ class ExamSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ExamInfo
-        fields = ('user', 'name', 'exam_id', 'student_id', 'exam_addr', 'exam_number', 'grade')
+        fields = ('user', 'name', 'stu_id', 'ex_id', 'ex_addr', 'ex_type', 'grade')
 
         

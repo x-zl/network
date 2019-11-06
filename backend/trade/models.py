@@ -33,3 +33,20 @@ class OrderInfo(models.Model):
 
     def __str__(self):
         return "{}".format(self.trade_no)
+
+class ExamInfo(models.Model):
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(unique=True, null=True, blank=True, max_length=50)
+    exam_id = models.CharField(max_length=20,  null=True, blank=True, verbose_name='考场号', help_text='考场号')
+    student_id = models.CharField(max_length=20,  null=True, blank=True, verbose_name='考生号', help_text='考生号')
+    # post
+    exam_addr = models.CharField(max_length=20,  default='', verbose_name='考场地点', help_text='考场地点')
+    exam_number = models.CharField(max_length=20, default='', verbose_name='考试类型', help_text='考试类型')
+    grade = models.PositiveIntegerField(null=True)
+    class Meta:
+        verbose_name_plural = verbose_name = '考试信息'
+        
+
+    def __str__(self):
+        return "{}".format(self.name)

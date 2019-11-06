@@ -8,9 +8,9 @@ from datetime import datetime
 from rest_framework import permissions
 
 from .settings import ALIPAY_APPID, APP_PRIVATE_KEY_PATH, ALIPAY_PUBLIC_KEY_PATH, ALIPAY_DEBUG, ALIPAY_URL
-from .models import OrderInfo
+from .models import OrderInfo, ExamInfo
 from enrollmentSystem.models import Profile
-from .serializers import OrderInfoSerializer
+from .serializers import OrderInfoSerializer, ExamSerializer
 
 def get_server_ip():
     return '47.100.162.64'
@@ -160,7 +160,22 @@ class AliPayAPI(APIView):
                 pay_status = trade_status,
                 pay_time = datetime.now(),
             )
+            #tp = Profile.objects.get(user=tmp.user)
+            #ExamInfo.objects.create(user=tmp.user,name=tp.name,
             print("------post-end2------")
         print("------post-end------")
         # 给支付宝服务器返回，表明已经收到异步通知
         return Response('success')
+
+class ExamAPI(APIView):
+    def get(self, request, **kwargs):
+        klog(__name__)
+        user = request.user
+
+        # serializer = UserSerializer(user)
+        if user.is_authenticated:
+            exam_data = ExamInfo.objects.filter(user=user)
+            klog('authenticated', exam_data)
+            exam_serializer = ExamSerializer(exam_data)
+            return Response(exam_serializer.data)
+        return Response(status=status.HTTP_400_BAD_REQUEST)

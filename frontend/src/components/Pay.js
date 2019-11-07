@@ -45,7 +45,7 @@ export default class Pay extends React.Component {
 
   handleChange = e => {
     let {name, value} = e.target;
-    if (e.target.type === "select-one") {
+    if (e.target.type === "select") {
       value = ExamType[value];
       console.log("----in-if----")
     }

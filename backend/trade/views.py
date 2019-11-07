@@ -39,7 +39,7 @@ class OrderView(APIView):
 
         if result:
             try:
-                order=OrderInfo.objects.get(pk=trade_no)
+                order=OrderInfo.objects.get(trade_no=trade_no)
             except:
                 return Response({'pay_status': 'invalid trade_no', 'finished': 'false'})
             # if order.pay_status = 'success':
@@ -114,7 +114,7 @@ class AliPayAPI(APIView):
             #verify_result为真就一定完成
 
             # 修改订单状态为已完成 两个表一起应该是原子操作
-            order = OrderInfo.objects.get(pk=out_trade_no)
+            order = OrderInfo.objects.get(trade_no=out_trade_no)
             order.pay_status = 'success'
             order.pay_time = datetime.now()
             order.save()
@@ -134,7 +134,14 @@ class AliPayAPI(APIView):
             if ExamInfo.objects.filter(user=user,exam_number=exam_number).count() != 0:
                 return Response('success')
             # 考号 时间
-            exam_id = str(datetime.now().year)+str(exam_number)+('%04d' % class_number)+('%03d' % student_id)
+            exa_number = "0"
+            if(exam_number == "四级"):
+                exa_number = "1"
+            if(exam_number == "六级"):
+                exa_number = "2"
+            if(exam_number == "计算机等级考试"):
+                exa_number = "3"
+            exam_id = str(datetime.now().year)+str(exa_number)+('%04d' % class_number)+('%03d' % student_id)
             ExamInfo.objects.create(
                 user = user,
                 name = profile.name,

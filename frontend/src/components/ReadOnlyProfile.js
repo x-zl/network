@@ -12,13 +12,13 @@ import {
 import {
   Link
 } from "react-router-dom"
-import './Profile.css';
+import BaseProfile from "./BaseProfile"
 import {
   handleResponse,
   handleHeaderWithAuthToken,
   handleUrl,
 } from '../fetchClient/fetchHandler';
-import BaseProfile from "./BaseProfile"
+
 /*
 # write read
 name = models.CharField(null=True, max_length=50)
@@ -47,6 +47,7 @@ export default class Profile extends React.Component {
       // if change since last submit
       couldSave: false,
       couldPay: false,
+      readOnly: true,
     };
   }
 
@@ -97,9 +98,27 @@ export default class Profile extends React.Component {
       });
   };
 
+
+
   render() {
-    const { formInfo, hasChanged, couldSave, couldPay } = this.state;
+    const { formInfo, hasChanged, couldSave, couldPay, readOnly } = this.state;
     console.log('state', this.state);
+    const buttonNode = !readOnly ? (
+      <Button
+        onClick={() => this.handle_profile_submit(formInfo)}
+        disabled={!couldSave}
+        color = {couldSave ? 'success' : undefined}
+      >
+        保存信息
+      </Button>
+    ) : (
+      <Button
+        onClick={() => { this.setState({readOnly: false}); }}
+        color = {'success'}
+      >
+        更改信息
+      </Button>
+    )
     return (
       <>
         <Breadcrumb>
@@ -107,14 +126,8 @@ export default class Profile extends React.Component {
           <BreadcrumbItem active>Profile</BreadcrumbItem>
         </Breadcrumb>
         <Form style={{width: "300px", margin: "auto"}}>
-          <BaseProfile handleChange={this.handleChange} formInfo={formInfo}/>
-          <Button
-            onClick={() => this.handle_profile_submit(formInfo)}
-            disabled={!couldSave}
-            color = {couldSave ? 'success' : undefined}
-          >
-            保存信息
-          </Button>{' '}
+          <BaseProfile readOnly={readOnly} handleChange={this.handleChange} formInfo={formInfo}/>
+          {buttonNode}{' '}
           <Link to="/profile/pay">
             <Button disabled={!couldPay} color={couldPay ? 'success' : undefined}>
               支付报名

@@ -1,11 +1,20 @@
 .App {
-  text-align: center;
   margin-left: 20px;
+}
+
+.modal-footer>:not(:last-child) {
+    margin-right: 16rem;
 }
 
 input {
   display: block;
   margin: 5px 0 5px;
+}
+
+.breadcrumb {
+  border-top-color: antiquewhite;
+  background-color: #f8f9fa!important;
+  padding: 5px;
 }
 
 .App-logo {

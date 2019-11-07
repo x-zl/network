@@ -9,8 +9,14 @@ import {
   Form,
   FormGroup,
   Input,
-  Label
+  Label,
+  FormText,
+  FormFeedback,
 } from "reactstrap";
+import {
+  Route,
+  Link,
+} from 'react-router-dom';
 
 class LoginModal extends React.Component {
   state = {
@@ -29,6 +35,7 @@ class LoginModal extends React.Component {
       newUser[name] = value;
       const newState = { ...prevstate };
       newState.user = newUser;
+      newState.errorMessage = '';
       return newState;
     });
   }
@@ -39,12 +46,12 @@ class LoginModal extends React.Component {
     const validationSuccess = onSave(user);
     if (validationSuccess === true) {
       this.setState({errorMessage: ''}, () => {
-        console.log('validation success');
-        toggle();
+        // console.log('validation success');
+        // toggle();
       });
     } else {
-      this.setState({errorMessage: 'error validation'}, () => {
-        console.log('validation error');
+      this.setState({errorMessage: 'wrong password'}, () => {
+        console.log('wrong password');
       })
     }
   }
@@ -70,7 +77,7 @@ class LoginModal extends React.Component {
             </FormGroup>
             <FormGroup>
               <Label for="password">Password</Label>
-              <span style={{padding: '10px', color: 'red'}}>{errorMessage}</span>
+              <FormFeedback invalid={errorMessage!==''}>{errorMessage}</FormFeedback>
               <Input
                 type="password"
                 name="password"
@@ -82,6 +89,12 @@ class LoginModal extends React.Component {
           </Form>
         </ModalBody>
         <ModalFooter>
+          <Button color="info" outline
+            onClick={() => {toggle('signup')} }
+            size="sm"
+            >
+            Sign up first
+          </Button>
           <Button color="success" onClick={this.submit}>
             Submit
           </Button>

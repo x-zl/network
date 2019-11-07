@@ -46,8 +46,8 @@ export function handleHeaderWithAuthToken(headers={}) {
   return newHeaders;
 }
 
-export function handleUrl (url, param=undefined) {
-  const newUrl = `${BackendURL}${url}`;
+export function handleUrl(url, param=undefined) {
+  let newUrl = `${BackendURL}${url}`;
   if (!param) {
     return newUrl;
   }

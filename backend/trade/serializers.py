@@ -2,12 +2,14 @@ from rest_framework import serializers
 import time
 
 from .models import OrderInfo, ExamInfo
-"""
+
 class examInfoSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = OrderInfo
-        fields = ('exam_number', '')
-"""
+        fields = ('name', 'IDCard', 'student_id', 'exam_id', 'class_number', 'grade')
+
+
 class OrderInfoSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault()  # user为隐藏字段，默认为获取当前登录用户
@@ -17,14 +19,12 @@ class OrderInfoSerializer(serializers.ModelSerializer):
     trade_no = serializers.CharField(read_only=True)
     pay_time = serializers.DateTimeField(read_only=True)
 
-    # order_sn = serializers.SerializerMethodField()
+
+
     def generate_trade_no(self, exam_number):
-        # from random import Random
-        # random_ins = Random()
-        # time_str=time.strftime("%Y%m%d%H%M%S")
-        # ranstr=random_ins.randint(10, 99)
         suffix = '329810382'
-        trade_no = "329810382{userid}.{exam_number}".format(userid=self.context["request"].user.id,exam_number=exam_number)
+        trade_no = "{suffix}{exam_number}{userid}".format(suffix=suffix, exam_number=exam_number,
+            userid=self.context["request"].user.id)
         return trade_no
 
     def create(self, validated_data):
@@ -43,11 +43,3 @@ class OrderInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderInfo
         fields = "__all__"
-
-class ExamSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = ExamInfo
-        fields = ('user', 'name', 'stu_id', 'ex_id', 'ex_addr', 'ex_type', 'grade')
-
-        

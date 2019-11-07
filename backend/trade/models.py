@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from .utils.alipay import AliPay
 
 # Create your models here.
 class OrderInfo(models.Model):
@@ -34,20 +33,28 @@ class OrderInfo(models.Model):
     def __str__(self):
         return "{}".format(self.trade_no)
 
+
+
 class ExamInfo(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # 考生姓名 对应用户profile的姓名，为了减少查询 直接生成
     name = models.CharField(null=True, blank=True, max_length=50)
-    stu_id = models.IntegerField(verbose_name='考生序号',default=0)
-    ex_id = models.CharField(max_length=20,  null=True, blank=True, verbose_name='考生号', help_text='考生号')
-    # post
-    ex_addr = models.IntegerField(default=0, verbose_name='考场地点')
-    ex_type = models.CharField(max_length=20, default='', verbose_name='考试类型', help_text='考试类型')
-    grade = models.PositiveIntegerField(default=0)
-    
+    IDCard = models.CharField(null=True, blank=True, max_length=50)
+    # 考生序号为该类型考试的上一个考生加1
+    student_id = models.IntegerField(verbose_name='考生序号', blank=True, default=0)
+    exam_id = models.CharField(max_length=20,  null=True, blank=True, verbose_name='考号', help_text='考生号')
+
+    # 考场号由该类型考试的考生序号%30+1按顺序对应到考场 直接生成
+    class_number = models.IntegerField(default=0, blank=True, verbose_name='考场号')
+
+    exam_number = models.CharField(max_length=20, blank=True, default='', verbose_name='考试类型', help_text='考试类型')
+
+    # 创建时为一个不可能的成绩 比如0
+    grade = models.IntegerField(blank=True, default=0)
+
     class Meta:
         verbose_name_plural = verbose_name = '考试信息'
-        
 
     def __str__(self):
         return "{}".format(self.name)

@@ -5,7 +5,9 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText
+  FormText,
+  Breadcrumb,
+  BreadcrumbItem,
 } from 'reactstrap';
 import {
   Link
@@ -23,20 +25,28 @@ export default class ExamInfo extends React.Component {
       student_name: '',
       exam_number: this.props.exam_number || '',
       student_id: '',
+      name: '',
+      IDCard: '',
+      student_id: '',
+      exam_id: '',
+      class_number: '',
+      grade: '',
     }
   }
   // TODO
   componentDidMount() {
-    // query_pay()
+    this.query_exam()
   }
 
-  query_pay = () => {
+  query_exam = () => {
     const { exam_number } = this.props;
     const data = {
       exam_number,
     }
 
-    fetch(handleUrl('exams/'), {
+    fetch(handleUrl('order/', {
+      'exam_number': exam_number
+    }), {
       method: 'GET',
       headers: handleHeaderWithAuthToken(),
     })
@@ -51,24 +61,41 @@ export default class ExamInfo extends React.Component {
   }
 
   render() {
-    const { student_name, exam_number, student_id } = this.examInfo;
+    const {
+      student_name,
+      exam_number,
+      student_id,
+      grade,
+    } = this.examInfo;
+
     return (
-      <Form>
-        <Label>考试信息</Label>
-        <FormGroup>
-          <Label>姓名</Label>
-          <FormText>{student_name}</FormText>
-        </FormGroup>
-        <FormGroup>
-          <Label>考试类型</Label>
-          <FormText>{exam_number}</FormText>
-        </FormGroup>
-        <FormGroup>
-          <Label>考生号</Label>
-          <FormText>{student_id}</FormText>
-        </FormGroup>
-        {this.props.pay && <FormText color='success'>报名成功!</FormText>}
-      </Form>
+      <>
+        {this.props.pay &&
+          <Breadcrumb>
+            <BreadcrumbItem><a href="/">Home</a></BreadcrumbItem>
+            <BreadcrumbItem><a href="/profile">Profile</a></BreadcrumbItem>
+            <BreadcrumbItem><a href="/profile/pay">Pay</a></BreadcrumbItem>
+            <BreadcrumbItem active>Exam Infomation</BreadcrumbItem>
+          </Breadcrumb>
+        }
+        <Form style={{width: "300px", margin: "auto"}}>
+          <Label>考试信息</Label>
+          <FormGroup>
+            <Label>姓名</Label>
+            <FormText>{student_name}</FormText>
+          </FormGroup>
+          <FormGroup>
+            <Label>考试类型</Label>
+            <FormText>{exam_number}</FormText>
+          </FormGroup>
+          <FormGroup>
+            <Label>考生号</Label>
+            <FormText>{student_id}</FormText>
+          </FormGroup>
+          {this.props.pay && <FormText color='success'>报名成功!</FormText>}
+          {grade == 0 && <FormText color='mute'>未考试</FormText>}
+        </Form>
+      </>
     );
   }
 }

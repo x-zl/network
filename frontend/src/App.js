@@ -3,11 +3,16 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from "react-router-dom"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+} from 'reactstrap'
 
 import ExamInfo from './components/examInfo'
 import Profile from './components/Profile';
+import ReadOnlyProfile from './components/ReadOnlyProfile';
 import Home from "./components/Home"
 import TopNav from './components/TopNav';
 import LoginModal from './components/LoginModal';
@@ -27,7 +32,8 @@ class App extends Component {
     this.state = {
       displayed_form: '',
       logged_in: false,
-      username: ''
+      username: '',
+      errmsg: '',
     };
   }
 
@@ -45,7 +51,8 @@ class App extends Component {
           this.setState({ logged_in: true });
           this.setState({ username: json.username });
         }).catch(err => {
-          this.setState({ logged_in: false });
+          this.setState({ logged_in: false, displayed_form: 'login' });
+
           console.log("error is", err);
         });
     }
@@ -90,10 +97,13 @@ class App extends Component {
         this.setState({
           logged_in: true,
           displayed_form: '',
-          username: json.username
+          username: json.username,
+          errmsg: '',
         });
+        return true;
       }).catch(err => {
         console.log("signup error", err);
+        return false;
       });
   };
 
@@ -113,6 +123,14 @@ class App extends Component {
     });
   };
 
+  handle_expired_error = (err) => {
+    if (err.statusText === "Unauthorized") {
+      if (err.detail === "Signature has expired.") {
+        this.display_form("login");
+      }
+    }
+  }
+
   render() {
     const display = this.state.displayed_form;
     console.log("render", display);
@@ -124,6 +142,7 @@ class App extends Component {
             logged_in={this.state.logged_in}
             display_form={this.display_form}
             handle_logout={this.handle_logout}
+            username={this.state.logged_in ? this.state.username : undefined}
           />
           {display === 'login' &&
             <LoginModal
@@ -139,20 +158,26 @@ class App extends Component {
               onSave={this.handle_signup}
             />
           }
-
           <Switch>
             <Route exact path="/">
-              <Home logged_in={this.state.logged_in} username={this.state.username}/>
+              <Home
+                logged_in={this.state.logged_in}
+                username={this.state.username}
+              />
             </Route>
             <Route exact path="/profile/pay">
-              <Pay />
+              <Pay handle_expired_error={this.handle_expired_error}/>
             </Route>
             <Route exact path="/profile">
-              <Profile />
+              <Profile handle_expired_error={this.handle_expired_error}/>
             </Route>
-            <Route exact path="/profile/exams">
+            <Route exact path="/check/profile">
+              <ReadOnlyProfile handle_expired_error={this.handle_expired_error}/>
+            </Route>
+            <Route exact path="/check/exams">
               <Exams />
             </Route>
+
           </Switch>
 
         </Router>

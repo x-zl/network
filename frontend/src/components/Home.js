@@ -4,7 +4,11 @@ import {
   Switch,
   Route,
   Link
-} from "react-router-dom"
+} from "react-router-dom";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+} from "reactstrap";
 import Profile from './Profile';
 
 const Home = (props) => {
@@ -13,6 +17,9 @@ const Home = (props) => {
     <h3>
       {props.logged_in ? (
         <>
+          <Breadcrumb>
+            <BreadcrumbItem active>Home</BreadcrumbItem>
+          </Breadcrumb>
           {`Hello, ${props.username}`}
           <Link to="/profile">
             点击完善资料

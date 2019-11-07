@@ -9,7 +9,9 @@ import {
   Form,
   FormGroup,
   Input,
-  Label
+  Label,
+  FormText,
+  FormFeedback,
 } from "reactstrap";
 
 class SignupModal extends React.Component {
@@ -17,7 +19,8 @@ class SignupModal extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      errorMessage: '',
     };
   }
 
@@ -31,7 +34,24 @@ class SignupModal extends React.Component {
     });
   };
 
+  submit = e => {
+    const { user } = this.state;
+    const { onSave, toggle } = this.props;
+    const validationSuccess = onSave(user);
+    if (validationSuccess === true) {
+      this.setState({errorMessage: ''}, () => {
+        // console.log('validation success');
+        // toggle();
+      });
+    } else {
+      this.setState({errorMessage: 'wrong password'}, () => {
+        console.log('wrong password');
+      })
+    }
+  }
+
   render() {
+    const { errorMessage } = this.state;
     const {isOpen, toggle, onSave} = this.props;
     return (
       <Modal isOpen={isOpen} toggle={toggle}>
@@ -41,6 +61,7 @@ class SignupModal extends React.Component {
             <FormGroup>
               {/*for = htmlFor ?*/}
               <Label for="username">Username</Label>
+              <FormFeedback invalid={errorMessage!==''}>{errorMessage}</FormFeedback>
               <Input
                 type="text"
                 name="username"
@@ -62,6 +83,11 @@ class SignupModal extends React.Component {
           </Form>
         </ModalBody>
         <ModalFooter>
+          <Button color="primary" outline
+            onClick={() => {toggle('login')} }
+            size="sm" >
+            已有账号？登陆
+          </Button>
           <Button color="success" onClick={() => onSave(this.state)}>
             Submit
           </Button>

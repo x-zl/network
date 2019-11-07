@@ -5,7 +5,10 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText
+  FormText,
+  Breadcrumb,
+  BreadcrumbItem,
+  Col,
 } from 'reactstrap';
 import {
   Route,
@@ -19,6 +22,11 @@ import {
   handleUrl,
 } from '../fetchClient/fetchHandler';
 
+const ExamType = {
+  '四级': '1',
+  '六级': '2',
+  '计算机等级考试': '3',
+}
 
 export default class Pay extends React.Component {
   constructor(props) {
@@ -28,33 +36,24 @@ export default class Pay extends React.Component {
       pay_status: 'unpaid',
       orderInfo: {
         // update
-        exam_number: '',
+        exam_number: '1',
         // return out_trade_no
         trade_no: '',
       },
     }
   }
-  /*
-  componentDidMount() {
-    console.log("get data from /profile");
-    fetch(handleUrl('profile/'), {
-      method: 'GET',
-      headers: handleHeaderWithAuthToken(),
-    })
-      .then(res => handleResponse(res))
-      .then(json => {
-        console.log("last profile", json)
-        this.setState({orderInfo: {...orderInfo, ...json} })
-      }).catch(err => {
-        console.log("get last profile error", err);
-      });
-  }
-  */
 
   handleChange = e => {
-    const {name, value} = e.target;
+    let {name, value} = e.target;
+    if (e.target.type === "select-one") {
+      value = ExamType[value];
+      console.log("----in-if----")
+    }
+    console.log("----end-if----")
+    console.log(e.target.type)
     const orderInfo = { ...this.state.orderInfo, [name]: value };
     this.setState({orderInfo });
+    console.log(name, value);
   };
 
   query_pay = () => {
@@ -81,6 +80,7 @@ export default class Pay extends React.Component {
         }
       })
       .catch(err => {
+        this.props.handle_expired_error(err);
         console.log("order unsuccessful", err);
       });
   }
@@ -111,71 +111,78 @@ export default class Pay extends React.Component {
         }
       })
       .catch(err => {
+        this.props.handle_expired_error(err);
         console.log("order unsuccessful", err);
       });
-    /*
-    fetch(handleUrl('order/result'), {
-      method: 'GET',
-      headers: handleHeaderWithAuthToken({
-        //'Content-Type': 'application/json',
-      }),
-      body: JSON.stringify(data)
-    })
-      .then(res => handleResponse(res))
-      .then(json => {
-        console.log("payment finished", json)
-        this.setState({pay_status: 'finished'});
-      }).catch(err => {
-        console.log("payment unsuccessful", err);
-        this.setState({pay_status: 'failed'});
-      });
-      */
   }
 
   render() {
     const {orderInfo, pay_status} = this.state;
     return (
-      <Form>
-        <FormGroup>
-          <Label for="account_total">account_total</Label>
-          <Input type="text" name="account_total" plaintext={true} value={25} />
-        </FormGroup>
-        <FormGroup>
-          <Label for="exam_number">exam_number</Label>
-          <Input
-            type="text"
-            name="exam_number"
-            onChange={this.handleChange}
-            value={orderInfo.exam_number} />
-        </FormGroup>
-        {pay_status === "unpaid" && <Button onClick={this.handle_pay}>去支付</Button>}
-        {(pay_status === "topay" || pay_status === "failed") &&
-          <>
-            <Link to="/profile">
-              <Button >返回</Button>
-            </Link>
-            {pay_status === "topay" &&
-              <>
-                {'  '}
-                <Button onClick={this.query_pay}>已支付</Button>
-              </>
-            }
-            {'  '}
-            <Button onClick={this.handle_pay}>重新支付></Button>
-          </>
-        }
-        {pay_status === "success" &&
-          <>
-            <Link to="/examInfo">
-              <Button>下一步></Button>
-            </Link>
-            <Route exact path='/examInfo'>
-              <ExamInfo exam_number={orderInfo.exam_number} pay={true}/>
-            </Route>
-          </>
-        }
-        {'  '}{pay_status}
-      </Form>
+      <>
+        <Breadcrumb>
+          <BreadcrumbItem><a href="/">Home</a></BreadcrumbItem>
+          <BreadcrumbItem><a href="/profile">Profile</a></BreadcrumbItem>
+          <BreadcrumbItem active>Pay</BreadcrumbItem>
+        </Breadcrumb>
+        <div style={{width: "600px", margin: "auto", borderColor: "red"}}>
+          <Form row>
+            <FormGroup row>
+              <Label for="account_total" sm={3}>account_total</Label>
+              <Col sm={2}>
+                <Input type="text" name="account_total" id="account_total"
+                  plaintext={true} value={25} readOnly/>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="examSelect" sm={3}>exam_number</Label>
+              <Col sm={5}>
+                <Input
+                  type="select"
+                  name="exam_number"
+                  id="examSelect"
+                  onChange={this.handleChange}
+                  value={orderInfo.exam_number}
+                >
+                  <option>四级</option>
+                  <option>六级</option>
+                  <option>计算机等级考试</option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              {pay_status === "unpaid" && <Button color="success" onClick={this.handle_pay}>去支付</Button>}
+              {(pay_status === "topay" || pay_status === "failed") &&
+                <>
+                  <Link to="/profile">
+                    <Button >返回</Button>
+                  </Link>
+                  {pay_status === "topay" &&
+                    <>
+                      {'  '}
+                      <Button onClick={this.query_pay}>已支付</Button>
+                    </>
+                  }
+                  {'  '}
+                  <Button onClick={this.handle_pay}>重新支付></Button>
+                </>
+              }
+              {pay_status === "success" &&
+                <>
+                  <Link to="/examInfo">
+                    <Button>下一步></Button>
+                  </Link>
+                  <Route exact path='/examInfo'>
+                    <ExamInfo exam_number={orderInfo.exam_number} pay={true}/>
+                  </Route>
+                </>
+              }
+              {'  '}{pay_status}
+            </FormGroup>
+          </Form>
+
+        </div>
+      </>
     );
 
 

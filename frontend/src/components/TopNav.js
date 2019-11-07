@@ -28,22 +28,22 @@ const TopNav = (props) => {
   console.log(props.logged_in);
 
   const content = !props.logged_in ? (
-    <>
-      <NavItem>
+    <div style={{}}>
+
         <Button outline color="primary"
           onClick={() => {display_form('login')}}
+          style={{margin: 'auto'}}
         >
           Log in
         </Button>
-      </NavItem>
-      <NavItem>
+        <span>{'  '}</span>
         <Button outline color="warning"
           onClick={() => {display_form('signup')}}
         >
           Sign up
         </Button>
-      </NavItem>
-    </>
+
+    </div>
   ) : (
     <Button outline color="warning"
       onClick={handle_logout}
@@ -51,7 +51,30 @@ const TopNav = (props) => {
       Log out
     </Button>
   );
-  console.log(content);
+
+  const loginDropDown = (
+    <UncontrolledDropdown nav inNavbar>
+      <DropdownToggle nav caret>
+        {props.logged_in ? props.username : 'login!'}
+      </DropdownToggle>
+      <DropdownMenu right>
+        <Link to='/check/profile'>
+          <DropdownItem>
+            查询信息
+          </DropdownItem>
+        </Link>
+        <Link to='/check/exam'>
+          <DropdownItem>
+            查询考试
+          </DropdownItem>
+        </Link>
+        <DropdownItem divider />
+        <DropdownItem>
+          LogOut
+        </DropdownItem>
+      </DropdownMenu>
+    </UncontrolledDropdown>
+  );
 
   return (
     <div>
@@ -61,25 +84,7 @@ const TopNav = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             {content}
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Profile
-              </DropdownToggle>
-              <DropdownMenu right>
-                <Link to='profile/exams'>
-                  <DropdownItem>
-                    查询考试
-                  </DropdownItem>
-                </Link>
-                <DropdownItem>
-                  Option 2
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  Reset
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
+            {props.logged_in && loginDropDown }
           </Nav>
         </Collapse>
       </Navbar>

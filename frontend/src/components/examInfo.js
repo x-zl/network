@@ -21,16 +21,18 @@ import {
 export default class ExamInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.examInfo = {
-      student_name: '',
-      exam_number: this.props.exam_number || '',
-      student_id: '',
-      name: '',
-      IDCard: '',
-      student_id: '',
-      exam_id: '',
-      class_number: '',
-      grade: '',
+    console.log(props)
+    this.state = { 
+      examInfo: {
+        exam_number: this.props.exam_number || '',
+        student_id: '',
+        name: '',
+        IDCard: '',
+        student_id: '',
+        exam_id: '',
+        class_number: '',
+        grade: '',
+      },
     }
   }
   // TODO
@@ -44,7 +46,7 @@ export default class ExamInfo extends React.Component {
       exam_number,
     }
 
-    fetch(handleUrl('order/', {
+    fetch(handleUrl('exam_info/', {
       'exam_number': exam_number
     }), {
       method: 'GET',
@@ -52,7 +54,9 @@ export default class ExamInfo extends React.Component {
     })
       .then(res => handleResponse(res))
       .then(json => {
-        this.examInfo = {...this.examInfo, ...json};
+        let examInfo = {...this.state.examInfo}
+        examInfo = {...examInfo, ...json};
+        this.setState({examInfo})
         console.log(json);
       })
       .catch(err => {
@@ -61,12 +65,13 @@ export default class ExamInfo extends React.Component {
   }
 
   render() {
+    console.log(this.props, this.state);
     const {
-      student_name,
+      name,
       exam_number,
       student_id,
       grade,
-    } = this.examInfo;
+    } = this.state.examInfo;
 
     return (
       <>
@@ -82,7 +87,7 @@ export default class ExamInfo extends React.Component {
           <Label>考试信息</Label>
           <FormGroup>
             <Label>姓名</Label>
-            <FormText>{student_name}</FormText>
+            <FormText>{name}</FormText>
           </FormGroup>
           <FormGroup>
             <Label>考试类型</Label>

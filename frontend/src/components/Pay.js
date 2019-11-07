@@ -36,7 +36,7 @@ export default class Pay extends React.Component {
       pay_status: 'unpaid',
       orderInfo: {
         // update
-        exam_number: '1',
+        exam_name: '四级',
         // return out_trade_no
         trade_no: '',
       },
@@ -44,25 +44,31 @@ export default class Pay extends React.Component {
   }
 
   handleChange = e => {
-    let {name, value} = e.target;
-    if (e.target.type === "select") {
-      value = ExamType[value];
-      console.log("----in-if----")
-    }
-    console.log("----end-if----")
-    console.log(e.target.type)
+    const {name, value} = e.target;
     const orderInfo = { ...this.state.orderInfo, [name]: value };
     this.setState({orderInfo });
     console.log(name, value);
   };
 
+  pay_success = () => {
+    this.setState({pay_status: 'success'});
+
+    const exam_number = ExamType[this.state.orderInfo.exam_name]
+    console.log("pay suceess", exam_number);
+    this.props.handle_query_exam(exam_number, true);
+
+    // window.location.href='examInfo/'
+  }
+
   query_pay = () => {
-    const data = this.state.orderInfo
-    if (!data.trade_no) {
-      // error
-    }
+    const {exam_name} = this.state.orderInfo;
+    console.log(exam_name, ExamType[exam_name])
+    const data = {exam_number: ExamType[exam_name]}
+
     const url = handleUrl('order/', data)
     console.log("url: ", url)
+
+    
     fetch(url, {
       method: 'GET',
       headers: handleHeaderWithAuthToken(),
@@ -71,9 +77,10 @@ export default class Pay extends React.Component {
       .then(json => {
         console.log(json);
         if (json.finished === 'true') {
-          // TODO 支付成功可以跳转，得到生成的考生号，考场号
           console.log(json)
-          this.setState({pay_status: 'success'});
+          // TODO 支付成功可以跳转，得到生成的考生号，考场号
+          //this.setState({pay_status: 'success'});
+          this.pay_success();
         } else {
           // TODO 支付失败不跳转，显示未成功
           this.setState({pay_status: 'failed'});
@@ -83,10 +90,14 @@ export default class Pay extends React.Component {
         this.props.handle_expired_error(err);
         console.log("order unsuccessful", err);
       });
+      
   }
 
   handle_pay = () => {
-    const data = this.state.orderInfo;
+    const {exam_name} = this.state.orderInfo;
+    console.log(exam_name, ExamType[exam_name])
+    const data = {exam_number: ExamType[exam_name]}
+
     console.log("post", data, "to order/");
     fetch(handleUrl('order/'), {
       method: 'POST',
@@ -139,10 +150,11 @@ export default class Pay extends React.Component {
               <Col sm={5}>
                 <Input
                   type="select"
-                  name="exam_number"
+                  name="exam_name"
                   id="examSelect"
+                  readOnly={pay_status === "success" }
                   onChange={this.handleChange}
-                  value={orderInfo.exam_number}
+                  value={orderInfo.exam_name}
                 >
                   <option>四级</option>
                   <option>六级</option>
@@ -172,9 +184,6 @@ export default class Pay extends React.Component {
                   <Link to="/examInfo">
                     <Button>下一步></Button>
                   </Link>
-                  <Route exact path='/examInfo'>
-                    <ExamInfo exam_number={orderInfo.exam_number} pay={true}/>
-                  </Route>
                 </>
               }
               {'  '}{pay_status}

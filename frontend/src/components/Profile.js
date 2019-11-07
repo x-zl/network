@@ -66,7 +66,8 @@ export default class Profile extends React.Component {
   }
 
   validateFormInfo = (json) => {
-    const { name, IDCard, phone_number } = this.state.forInfo || json;
+    const { name, IDCard, phone_number } = json ? json : this.state.formInfo;
+    console.log(name, IDCard, phone_number)
     if (!!name && !!IDCard && !!phone_number) {
       return true;
     }

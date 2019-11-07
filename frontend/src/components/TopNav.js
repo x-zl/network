@@ -45,11 +45,7 @@ const TopNav = (props) => {
 
     </div>
   ) : (
-    <Button outline color="warning"
-      onClick={handle_logout}
-    >
-      Log out
-    </Button>
+    <></>
   );
 
   const loginDropDown = (
@@ -69,7 +65,7 @@ const TopNav = (props) => {
           </DropdownItem>
         </Link>
         <DropdownItem divider />
-        <DropdownItem>
+        <DropdownItem onClick={props.handle_logout}>
           LogOut
         </DropdownItem>
       </DropdownMenu>

@@ -6,8 +6,8 @@ from .models import OrderInfo, ExamInfo
 class examInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = OrderInfo
-        fields = ('name', 'IDCard', 'student_id', 'exam_id', 'class_number', 'grade')
+        model = ExamInfo
+        fields = ('name', 'IDCard', 'student_id', 'exam_id', 'class_number', 'exam_number', 'grade')
 
 
 class OrderInfoSerializer(serializers.ModelSerializer):

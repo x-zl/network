@@ -19,6 +19,7 @@ from rest_framework import routers
 from enrollmentSystem import views
 from rest_framework_jwt.views import obtain_jwt_token
 
+
 router = routers.DefaultRouter()
 # router.register(r'todos', views.TodoView, 'todo')
 

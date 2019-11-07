@@ -4,7 +4,7 @@ npm WARN npm can't make any promises that npm will work with this version.
 npm WARN npm Supported releases of Node.js are the latest release of 6, 8, 9, 10, 11, 12.
 npm WARN npm You can find the latest version at https://nodejs.org/
 
-> frontend@0.1.0 start /root/1/online-enrollment-system/frontend
+> frontend@0.1.0 start /root/network/frontend
 > react-scripts start
 
 Starting the development server...
@@ -29,7 +29,7 @@ Compiled with warnings.
   Line 6:3:     'Label' is defined but never used                no-unused-vars
   Line 7:3:     'Input' is defined but never used                no-unused-vars
   Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
+  Line 102:23:  'hasChanged' is assigned a value but never used  no-unused-vars
 
 ./src/components/ReadOnlyProfile.js
   Line 1:17:    'Component' is defined but never used            no-unused-vars
@@ -42,16 +42,18 @@ Compiled with warnings.
 ./src/components/Pay.js
   Line 1:17:    'Component' is defined but never used           no-unused-vars
   Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 103:17:  'orderInfo' is assigned a value but never used  no-unused-vars
+  Line 14:3:    'Route' is defined but never used               no-unused-vars
+  Line 17:8:    'ExamInfo' is defined but never used            no-unused-vars
+  Line 117:17:  'orderInfo' is assigned a value but never used  no-unused-vars
 
 ./src/components/examInfo.js
   Line 1:17:   'Component' is defined but never used      no-unused-vars
   Line 3:3:    'Button' is defined but never used         no-unused-vars
   Line 7:3:    'Input' is defined but never used          no-unused-vars
   Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
+  Line 31:7:   Duplicate key 'student_id'                 no-dupe-keys
+  Line 44:11:  'data' is assigned a value but never used  no-unused-vars
+  Line 98:18:  Expected '===' and instead saw '=='        eqeqeq
 
 ./src/components/BaseProfile.js
   Line 1:17:  'Component' is defined but never used       no-unused-vars
@@ -75,21 +77,16 @@ Compiled with warnings.
   Line 6:3:   'Label' is defined but never used      no-unused-vars
   Line 7:3:   'Input' is defined but never used      no-unused-vars
 
-./src/fetchClient/fetchHandler.js
-  Line 55:5:  'newUrl' is constant  no-const-assign
-  Line 57:3:  'newUrl' is constant  no-const-assign
-  Line 59:5:  'newUrl' is constant  no-const-assign
-
 ./src/App.js
   Line 6:3:   'Link' is defined but never used            no-unused-vars
   Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
   Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
 
 ./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
+  Line 9:3:    'NavItem' is defined but never used                 no-unused-vars
+  Line 10:3:   'NavLink' is defined but never used                 no-unused-vars
+  Line 17:3:   'Route' is defined but never used                   no-unused-vars
+  Line 25:10:  'handle_logout' is assigned a value but never used  no-unused-vars
 
 Search for the keywords to learn more about each warning.
 To ignore, add // eslint-disable-next-line to the line before.
@@ -100,883 +97,28 @@ npm WARN npm can't make any promises that npm will work with this version.
 npm WARN npm Supported releases of Node.js are the latest release of 6, 8, 9, 10, 11, 12.
 npm WARN npm You can find the latest version at https://nodejs.org/
 
-> frontend@0.1.0 start /root/1/online-enrollment-system/frontend
+> frontend@0.1.0 start /root/network/frontend
 > react-scripts start
 
-Starting the development server...
-
-Compiled with warnings.
-
-./src/components/LoginModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 17:3:   'Route' is defined but never used            no-unused-vars
-  Line 18:3:   'Link' is defined but never used             no-unused-vars
-  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
-  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
-  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
-
-./src/components/SignupModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
-
-./src/components/Profile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/ReadOnlyProfile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/Pay.js
-  Line 1:17:    'Component' is defined but never used           no-unused-vars
-  Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 103:17:  'orderInfo' is assigned a value but never used  no-unused-vars
-
-./src/components/examInfo.js
-  Line 1:17:   'Component' is defined but never used      no-unused-vars
-  Line 3:3:    'Button' is defined but never used         no-unused-vars
-  Line 7:3:    'Input' is defined but never used          no-unused-vars
-  Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
-
-./src/components/BaseProfile.js
-  Line 1:17:  'Component' is defined but never used       no-unused-vars
-  Line 3:3:   'Button' is defined but never used          no-unused-vars
-  Line 4:3:   'Form' is defined but never used            no-unused-vars
-  Line 8:3:   'FormText' is defined but never used        no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-
-./src/components/Home.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:20:  'Router' is defined but never used     no-unused-vars
-  Line 4:3:   'Switch' is defined but never used     no-unused-vars
-  Line 5:3:   'Route' is defined but never used      no-unused-vars
-  Line 12:8:  'Profile' is defined but never used    no-unused-vars
-
-./src/components/Exams.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:3:   'Button' is defined but never used     no-unused-vars
-  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
-  Line 6:3:   'Label' is defined but never used      no-unused-vars
-  Line 7:3:   'Input' is defined but never used      no-unused-vars
-
-./src/fetchClient/fetchHandler.js
-  Line 55:5:  'newUrl' is constant  no-const-assign
-  Line 57:3:  'newUrl' is constant  no-const-assign
-  Line 59:5:  'newUrl' is constant  no-const-assign
-
-./src/App.js
-  Line 6:3:   'Link' is defined but never used            no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
-
-./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-Compiling...
-Compiled with warnings.
-
-./src/components/LoginModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 17:3:   'Route' is defined but never used            no-unused-vars
-  Line 18:3:   'Link' is defined but never used             no-unused-vars
-  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
-  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
-  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
-
-./src/components/SignupModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
-
-./src/components/Profile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/ReadOnlyProfile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/Pay.js
-  Line 1:17:    'Component' is defined but never used           no-unused-vars
-  Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 103:17:  'orderInfo' is assigned a value but never used  no-unused-vars
-
-./src/components/examInfo.js
-  Line 1:17:   'Component' is defined but never used      no-unused-vars
-  Line 3:3:    'Button' is defined but never used         no-unused-vars
-  Line 7:3:    'Input' is defined but never used          no-unused-vars
-  Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
-
-./src/components/BaseProfile.js
-  Line 1:17:  'Component' is defined but never used       no-unused-vars
-  Line 3:3:   'Button' is defined but never used          no-unused-vars
-  Line 4:3:   'Form' is defined but never used            no-unused-vars
-  Line 8:3:   'FormText' is defined but never used        no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-
-./src/components/Home.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:20:  'Router' is defined but never used     no-unused-vars
-  Line 4:3:   'Switch' is defined but never used     no-unused-vars
-  Line 5:3:   'Route' is defined but never used      no-unused-vars
-  Line 12:8:  'Profile' is defined but never used    no-unused-vars
-
-./src/components/Exams.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:3:   'Button' is defined but never used     no-unused-vars
-  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
-  Line 6:3:   'Label' is defined but never used      no-unused-vars
-  Line 7:3:   'Input' is defined but never used      no-unused-vars
-
-./src/fetchClient/fetchHandler.js
-  Line 55:5:  'newUrl' is constant  no-const-assign
-  Line 57:3:  'newUrl' is constant  no-const-assign
-  Line 59:5:  'newUrl' is constant  no-const-assign
-
-./src/App.js
-  Line 6:3:   'Link' is defined but never used            no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
-
-./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-
-Could not open Pay.js in the editor.
-
-To set up the editor integration, add something like REACT_EDITOR=atom to the .env.local file in your project folder and restart the development server. Learn more: https://goo.gl/MMTaZt
-
-Compiling...
-Compiled with warnings.
-
-./src/components/LoginModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 17:3:   'Route' is defined but never used            no-unused-vars
-  Line 18:3:   'Link' is defined but never used             no-unused-vars
-  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
-  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
-  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
-
-./src/components/SignupModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
-
-./src/components/Profile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/ReadOnlyProfile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/Pay.js
-  Line 1:17:    'Component' is defined but never used           no-unused-vars
-  Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 103:17:  'orderInfo' is assigned a value but never used  no-unused-vars
-
-./src/components/examInfo.js
-  Line 1:17:   'Component' is defined but never used      no-unused-vars
-  Line 3:3:    'Button' is defined but never used         no-unused-vars
-  Line 7:3:    'Input' is defined but never used          no-unused-vars
-  Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
-
-./src/components/BaseProfile.js
-  Line 1:17:  'Component' is defined but never used       no-unused-vars
-  Line 3:3:   'Button' is defined but never used          no-unused-vars
-  Line 4:3:   'Form' is defined but never used            no-unused-vars
-  Line 8:3:   'FormText' is defined but never used        no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-
-./src/components/Home.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:20:  'Router' is defined but never used     no-unused-vars
-  Line 4:3:   'Switch' is defined but never used     no-unused-vars
-  Line 5:3:   'Route' is defined but never used      no-unused-vars
-  Line 12:8:  'Profile' is defined but never used    no-unused-vars
-
-./src/components/Exams.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:3:   'Button' is defined but never used     no-unused-vars
-  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
-  Line 6:3:   'Label' is defined but never used      no-unused-vars
-  Line 7:3:   'Input' is defined but never used      no-unused-vars
-
-./src/fetchClient/fetchHandler.js
-  Line 55:5:  'newUrl' is constant  no-const-assign
-  Line 57:3:  'newUrl' is constant  no-const-assign
-  Line 59:5:  'newUrl' is constant  no-const-assign
-
-./src/App.js
-  Line 6:3:   'Link' is defined but never used            no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
-
-./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-Compiling...
-Compiled with warnings.
-
-./src/components/LoginModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 17:3:   'Route' is defined but never used            no-unused-vars
-  Line 18:3:   'Link' is defined but never used             no-unused-vars
-  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
-  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
-  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
-
-./src/components/SignupModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
-
-./src/components/Profile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/ReadOnlyProfile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/Pay.js
-  Line 1:17:    'Component' is defined but never used           no-unused-vars
-  Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 103:17:  'orderInfo' is assigned a value but never used  no-unused-vars
-
-./src/components/examInfo.js
-  Line 1:17:   'Component' is defined but never used      no-unused-vars
-  Line 3:3:    'Button' is defined but never used         no-unused-vars
-  Line 7:3:    'Input' is defined but never used          no-unused-vars
-  Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
-
-./src/components/BaseProfile.js
-  Line 1:17:  'Component' is defined but never used       no-unused-vars
-  Line 3:3:   'Button' is defined but never used          no-unused-vars
-  Line 4:3:   'Form' is defined but never used            no-unused-vars
-  Line 8:3:   'FormText' is defined but never used        no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-
-./src/components/Home.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:20:  'Router' is defined but never used     no-unused-vars
-  Line 4:3:   'Switch' is defined but never used     no-unused-vars
-  Line 5:3:   'Route' is defined but never used      no-unused-vars
-  Line 12:8:  'Profile' is defined but never used    no-unused-vars
-
-./src/components/Exams.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:3:   'Button' is defined but never used     no-unused-vars
-  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
-  Line 6:3:   'Label' is defined but never used      no-unused-vars
-  Line 7:3:   'Input' is defined but never used      no-unused-vars
-
-./src/App.js
-  Line 6:3:   'Link' is defined but never used            no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
-
-./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-Compiling...
-Compiled with warnings.
-
-./src/components/LoginModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 17:3:   'Route' is defined but never used            no-unused-vars
-  Line 18:3:   'Link' is defined but never used             no-unused-vars
-  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
-  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
-  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
-
-./src/components/SignupModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
-
-./src/components/Profile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/ReadOnlyProfile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/Pay.js
-  Line 1:17:    'Component' is defined but never used           no-unused-vars
-  Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 104:17:  'orderInfo' is assigned a value but never used  no-unused-vars
-
-./src/components/examInfo.js
-  Line 1:17:   'Component' is defined but never used      no-unused-vars
-  Line 3:3:    'Button' is defined but never used         no-unused-vars
-  Line 7:3:    'Input' is defined but never used          no-unused-vars
-  Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
-
-./src/components/BaseProfile.js
-  Line 1:17:  'Component' is defined but never used       no-unused-vars
-  Line 3:3:   'Button' is defined but never used          no-unused-vars
-  Line 4:3:   'Form' is defined but never used            no-unused-vars
-  Line 8:3:   'FormText' is defined but never used        no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-
-./src/components/Home.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:20:  'Router' is defined but never used     no-unused-vars
-  Line 4:3:   'Switch' is defined but never used     no-unused-vars
-  Line 5:3:   'Route' is defined but never used      no-unused-vars
-  Line 12:8:  'Profile' is defined but never used    no-unused-vars
-
-./src/components/Exams.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:3:   'Button' is defined but never used     no-unused-vars
-  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
-  Line 6:3:   'Label' is defined but never used      no-unused-vars
-  Line 7:3:   'Input' is defined but never used      no-unused-vars
-
-./src/App.js
-  Line 6:3:   'Link' is defined but never used            no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
-
-./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-Compiling...
-Compiled with warnings.
-
-./src/components/LoginModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 17:3:   'Route' is defined but never used            no-unused-vars
-  Line 18:3:   'Link' is defined but never used             no-unused-vars
-  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
-  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
-  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
-
-./src/components/SignupModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
-
-./src/components/Profile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/ReadOnlyProfile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/Pay.js
-  Line 1:17:    'Component' is defined but never used           no-unused-vars
-  Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 105:17:  'orderInfo' is assigned a value but never used  no-unused-vars
-
-./src/components/examInfo.js
-  Line 1:17:   'Component' is defined but never used      no-unused-vars
-  Line 3:3:    'Button' is defined but never used         no-unused-vars
-  Line 7:3:    'Input' is defined but never used          no-unused-vars
-  Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
-
-./src/components/BaseProfile.js
-  Line 1:17:  'Component' is defined but never used       no-unused-vars
-  Line 3:3:   'Button' is defined but never used          no-unused-vars
-  Line 4:3:   'Form' is defined but never used            no-unused-vars
-  Line 8:3:   'FormText' is defined but never used        no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-
-./src/components/Home.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:20:  'Router' is defined but never used     no-unused-vars
-  Line 4:3:   'Switch' is defined but never used     no-unused-vars
-  Line 5:3:   'Route' is defined but never used      no-unused-vars
-  Line 12:8:  'Profile' is defined but never used    no-unused-vars
-
-./src/components/Exams.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:3:   'Button' is defined but never used     no-unused-vars
-  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
-  Line 6:3:   'Label' is defined but never used      no-unused-vars
-  Line 7:3:   'Input' is defined but never used      no-unused-vars
-
-./src/App.js
-  Line 6:3:   'Link' is defined but never used            no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
-
-./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-Compiling...
-Compiled with warnings.
-
-./src/components/LoginModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 17:3:   'Route' is defined but never used            no-unused-vars
-  Line 18:3:   'Link' is defined but never used             no-unused-vars
-  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
-  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
-  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
-
-./src/components/SignupModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
-
-./src/components/Profile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/ReadOnlyProfile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/Pay.js
-  Line 1:17:    'Component' is defined but never used           no-unused-vars
-  Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 106:17:  'orderInfo' is assigned a value but never used  no-unused-vars
-
-./src/components/examInfo.js
-  Line 1:17:   'Component' is defined but never used      no-unused-vars
-  Line 3:3:    'Button' is defined but never used         no-unused-vars
-  Line 7:3:    'Input' is defined but never used          no-unused-vars
-  Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
-
-./src/components/BaseProfile.js
-  Line 1:17:  'Component' is defined but never used       no-unused-vars
-  Line 3:3:   'Button' is defined but never used          no-unused-vars
-  Line 4:3:   'Form' is defined but never used            no-unused-vars
-  Line 8:3:   'FormText' is defined but never used        no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-
-./src/components/Home.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:20:  'Router' is defined but never used     no-unused-vars
-  Line 4:3:   'Switch' is defined but never used     no-unused-vars
-  Line 5:3:   'Route' is defined but never used      no-unused-vars
-  Line 12:8:  'Profile' is defined but never used    no-unused-vars
-
-./src/components/Exams.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:3:   'Button' is defined but never used     no-unused-vars
-  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
-  Line 6:3:   'Label' is defined but never used      no-unused-vars
-  Line 7:3:   'Input' is defined but never used      no-unused-vars
-
-./src/App.js
-  Line 6:3:   'Link' is defined but never used            no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
-
-./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-Compiling...
-Compiled with warnings.
-
-./src/components/LoginModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 17:3:   'Route' is defined but never used            no-unused-vars
-  Line 18:3:   'Link' is defined but never used             no-unused-vars
-  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
-  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
-  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
-
-./src/components/SignupModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
-
-./src/components/Profile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/ReadOnlyProfile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/Pay.js
-  Line 1:17:    'Component' is defined but never used           no-unused-vars
-  Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 106:17:  'orderInfo' is assigned a value but never used  no-unused-vars
-
-./src/components/examInfo.js
-  Line 1:17:   'Component' is defined but never used      no-unused-vars
-  Line 3:3:    'Button' is defined but never used         no-unused-vars
-  Line 7:3:    'Input' is defined but never used          no-unused-vars
-  Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
-
-./src/components/BaseProfile.js
-  Line 1:17:  'Component' is defined but never used       no-unused-vars
-  Line 3:3:   'Button' is defined but never used          no-unused-vars
-  Line 4:3:   'Form' is defined but never used            no-unused-vars
-  Line 8:3:   'FormText' is defined but never used        no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-
-./src/components/Home.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:20:  'Router' is defined but never used     no-unused-vars
-  Line 4:3:   'Switch' is defined but never used     no-unused-vars
-  Line 5:3:   'Route' is defined but never used      no-unused-vars
-  Line 12:8:  'Profile' is defined but never used    no-unused-vars
-
-./src/components/Exams.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:3:   'Button' is defined but never used     no-unused-vars
-  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
-  Line 6:3:   'Label' is defined but never used      no-unused-vars
-  Line 7:3:   'Input' is defined but never used      no-unused-vars
-
-./src/App.js
-  Line 6:3:   'Link' is defined but never used            no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
-
-./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-npm WARN npm npm does not support Node.js v13.0.1
-npm WARN npm You should probably upgrade to a newer version of node as we
-npm WARN npm can't make any promises that npm will work with this version.
-npm WARN npm Supported releases of Node.js are the latest release of 6, 8, 9, 10, 11, 12.
-npm WARN npm You can find the latest version at https://nodejs.org/
-
-> frontend@0.1.0 start /root/1/online-enrollment-system/frontend
-> react-scripts start
-
-Starting the development server...
-
-Compiled with warnings.
-
-./src/components/LoginModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 17:3:   'Route' is defined but never used            no-unused-vars
-  Line 18:3:   'Link' is defined but never used             no-unused-vars
-  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
-  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
-  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
-
-./src/components/SignupModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
-
-./src/components/Profile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/ReadOnlyProfile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/Pay.js
-  Line 1:17:    'Component' is defined but never used           no-unused-vars
-  Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 106:17:  'orderInfo' is assigned a value but never used  no-unused-vars
-
-./src/components/examInfo.js
-  Line 1:17:   'Component' is defined but never used      no-unused-vars
-  Line 3:3:    'Button' is defined but never used         no-unused-vars
-  Line 7:3:    'Input' is defined but never used          no-unused-vars
-  Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
-
-./src/components/BaseProfile.js
-  Line 1:17:  'Component' is defined but never used       no-unused-vars
-  Line 3:3:   'Button' is defined but never used          no-unused-vars
-  Line 4:3:   'Form' is defined but never used            no-unused-vars
-  Line 8:3:   'FormText' is defined but never used        no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-
-./src/components/Home.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:20:  'Router' is defined but never used     no-unused-vars
-  Line 4:3:   'Switch' is defined but never used     no-unused-vars
-  Line 5:3:   'Route' is defined but never used      no-unused-vars
-  Line 12:8:  'Profile' is defined but never used    no-unused-vars
-
-./src/components/Exams.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:3:   'Button' is defined but never used     no-unused-vars
-  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
-  Line 6:3:   'Label' is defined but never used      no-unused-vars
-  Line 7:3:   'Input' is defined but never used      no-unused-vars
-
-./src/App.js
-  Line 6:3:   'Link' is defined but never used            no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
-
-./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
-npm WARN npm npm does not support Node.js v13.0.1
-npm WARN npm You should probably upgrade to a newer version of node as we
-npm WARN npm can't make any promises that npm will work with this version.
-npm WARN npm Supported releases of Node.js are the latest release of 6, 8, 9, 10, 11, 12.
-npm WARN npm You can find the latest version at https://nodejs.org/
-npm WARN bootstrap@4.3.1 requires a peer of jquery@1.9.1 - 3 but none is installed. You must install peer dependencies yourself.
-npm WARN tsutils@3.17.1 requires a peer of typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta but none is installed. You must install peer dependencies yourself.
-npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.9 (node_modules/jest-haste-map/node_modules/fsevents):
-npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.9: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
-npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.9 (node_modules/chokidar/node_modules/fsevents):
-npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.9: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
-npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.0.7 (node_modules/fsevents):
-npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.0.7: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
-
-up to date in 13.504s
-npm WARN npm npm does not support Node.js v13.0.1
-npm WARN npm You should probably upgrade to a newer version of node as we
-npm WARN npm can't make any promises that npm will work with this version.
-npm WARN npm Supported releases of Node.js are the latest release of 6, 8, 9, 10, 11, 12.
-npm WARN npm You can find the latest version at https://nodejs.org/
-
-> frontend@0.1.0 start /root/1/online-enrollment-system/frontend
-> react-scripts start
-
-Starting the development server...
-
-Compiled with warnings.
-
-./src/components/LoginModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 17:3:   'Route' is defined but never used            no-unused-vars
-  Line 18:3:   'Link' is defined but never used             no-unused-vars
-  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
-  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
-  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
-
-./src/components/SignupModal.js
-  Line 13:3:   'FormText' is defined but never used         no-unused-vars
-  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
-
-./src/components/Profile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/ReadOnlyProfile.js
-  Line 1:17:    'Component' is defined but never used            no-unused-vars
-  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
-  Line 6:3:     'Label' is defined but never used                no-unused-vars
-  Line 7:3:     'Input' is defined but never used                no-unused-vars
-  Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
-
-./src/components/Pay.js
-  Line 1:17:    'Component' is defined but never used           no-unused-vars
-  Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 106:17:  'orderInfo' is assigned a value but never used  no-unused-vars
-
-./src/components/examInfo.js
-  Line 1:17:   'Component' is defined but never used      no-unused-vars
-  Line 3:3:    'Button' is defined but never used         no-unused-vars
-  Line 7:3:    'Input' is defined but never used          no-unused-vars
-  Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
-
-./src/components/BaseProfile.js
-  Line 1:17:  'Component' is defined but never used       no-unused-vars
-  Line 3:3:   'Button' is defined but never used          no-unused-vars
-  Line 4:3:   'Form' is defined but never used            no-unused-vars
-  Line 8:3:   'FormText' is defined but never used        no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-
-./src/components/Home.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:20:  'Router' is defined but never used     no-unused-vars
-  Line 4:3:   'Switch' is defined but never used     no-unused-vars
-  Line 5:3:   'Route' is defined but never used      no-unused-vars
-  Line 12:8:  'Profile' is defined but never used    no-unused-vars
-
-./src/components/Exams.js
-  Line 1:17:  'Component' is defined but never used  no-unused-vars
-  Line 3:3:   'Button' is defined but never used     no-unused-vars
-  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
-  Line 6:3:   'Label' is defined but never used      no-unused-vars
-  Line 7:3:   'Input' is defined but never used      no-unused-vars
-
-./src/App.js
-  Line 6:3:   'Link' is defined but never used            no-unused-vars
-  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
-  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
-
-./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
-
-Search for the keywords to learn more about each warning.
-To ignore, add // eslint-disable-next-line to the line before.
-
+Something is already running on port 3000.
 The build failed because the process exited too early. This probably means the system ran out of memory or someone called `kill -9` on the process.
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! frontend@0.1.0 start: `react-scripts start`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the frontend@0.1.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2019-11-07T09_50_59_928Z-debug.log
 npm WARN npm npm does not support Node.js v13.0.1
 npm WARN npm You should probably upgrade to a newer version of node as we
 npm WARN npm can't make any promises that npm will work with this version.
 npm WARN npm Supported releases of Node.js are the latest release of 6, 8, 9, 10, 11, 12.
 npm WARN npm You can find the latest version at https://nodejs.org/
 
-> frontend@0.1.0 start /root/1/online-enrollment-system/frontend
+> frontend@0.1.0 start /root/network/frontend
 > react-scripts start
 
 Starting the development server...
@@ -1001,7 +143,7 @@ Compiled with warnings.
   Line 6:3:     'Label' is defined but never used                no-unused-vars
   Line 7:3:     'Input' is defined but never used                no-unused-vars
   Line 8:3:     'FormText' is defined but never used             no-unused-vars
-  Line 101:23:  'hasChanged' is assigned a value but never used  no-unused-vars
+  Line 102:23:  'hasChanged' is assigned a value but never used  no-unused-vars
 
 ./src/components/ReadOnlyProfile.js
   Line 1:17:    'Component' is defined but never used            no-unused-vars
@@ -1014,16 +156,18 @@ Compiled with warnings.
 ./src/components/Pay.js
   Line 1:17:    'Component' is defined but never used           no-unused-vars
   Line 8:3:     'FormText' is defined but never used            no-unused-vars
-  Line 106:17:  'orderInfo' is assigned a value but never used  no-unused-vars
+  Line 14:3:    'Route' is defined but never used               no-unused-vars
+  Line 17:8:    'ExamInfo' is defined but never used            no-unused-vars
+  Line 117:17:  'orderInfo' is assigned a value but never used  no-unused-vars
 
 ./src/components/examInfo.js
   Line 1:17:   'Component' is defined but never used      no-unused-vars
   Line 3:3:    'Button' is defined but never used         no-unused-vars
   Line 7:3:    'Input' is defined but never used          no-unused-vars
   Line 13:3:   'Link' is defined but never used           no-unused-vars
-  Line 30:7:   Duplicate key 'student_id'                 no-dupe-keys
-  Line 43:11:  'data' is assigned a value but never used  no-unused-vars
-  Line 96:18:  Expected '===' and instead saw '=='        eqeqeq
+  Line 31:7:   Duplicate key 'student_id'                 no-dupe-keys
+  Line 44:11:  'data' is assigned a value but never used  no-unused-vars
+  Line 98:18:  Expected '===' and instead saw '=='        eqeqeq
 
 ./src/components/BaseProfile.js
   Line 1:17:  'Component' is defined but never used       no-unused-vars
@@ -1051,12 +195,261 @@ Compiled with warnings.
   Line 6:3:   'Link' is defined but never used            no-unused-vars
   Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
   Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
-  Line 13:8:  'ExamInfo' is defined but never used        no-unused-vars
 
 ./src/components/TopNav.js
-  Line 9:3:   'NavItem' is defined but never used  no-unused-vars
-  Line 10:3:  'NavLink' is defined but never used  no-unused-vars
-  Line 17:3:  'Route' is defined but never used    no-unused-vars
+  Line 9:3:    'NavItem' is defined but never used                 no-unused-vars
+  Line 10:3:   'NavLink' is defined but never used                 no-unused-vars
+  Line 17:3:   'Route' is defined but never used                   no-unused-vars
+  Line 25:10:  'handle_logout' is assigned a value but never used  no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+Compiling...
+Compiled with warnings.
+
+./src/components/LoginModal.js
+  Line 13:3:   'FormText' is defined but never used         no-unused-vars
+  Line 17:3:   'Route' is defined but never used            no-unused-vars
+  Line 18:3:   'Link' is defined but never used             no-unused-vars
+  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
+  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
+  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
+
+./src/components/SignupModal.js
+  Line 13:3:   'FormText' is defined but never used         no-unused-vars
+  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
+
+./src/components/Profile.js
+  Line 1:17:    'Component' is defined but never used            no-unused-vars
+  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
+  Line 6:3:     'Label' is defined but never used                no-unused-vars
+  Line 7:3:     'Input' is defined but never used                no-unused-vars
+  Line 8:3:     'FormText' is defined but never used             no-unused-vars
+  Line 102:23:  'hasChanged' is assigned a value but never used  no-unused-vars
+
+./src/components/ReadOnlyProfile.js
+  Line 1:17:    'Component' is defined but never used            no-unused-vars
+  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
+  Line 6:3:     'Label' is defined but never used                no-unused-vars
+  Line 7:3:     'Input' is defined but never used                no-unused-vars
+  Line 8:3:     'FormText' is defined but never used             no-unused-vars
+  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
+
+./src/components/Pay.js
+  Line 1:17:    'Component' is defined but never used           no-unused-vars
+  Line 8:3:     'FormText' is defined but never used            no-unused-vars
+  Line 14:3:    'Route' is defined but never used               no-unused-vars
+  Line 17:8:    'ExamInfo' is defined but never used            no-unused-vars
+  Line 117:17:  'orderInfo' is assigned a value but never used  no-unused-vars
+
+./src/components/examInfo.js
+  Line 1:17:   'Component' is defined but never used      no-unused-vars
+  Line 3:3:    'Button' is defined but never used         no-unused-vars
+  Line 7:3:    'Input' is defined but never used          no-unused-vars
+  Line 13:3:   'Link' is defined but never used           no-unused-vars
+  Line 31:7:   Duplicate key 'student_id'                 no-dupe-keys
+  Line 44:11:  'data' is assigned a value but never used  no-unused-vars
+  Line 98:18:  Expected '===' and instead saw '=='        eqeqeq
+
+./src/components/BaseProfile.js
+  Line 1:17:  'Component' is defined but never used       no-unused-vars
+  Line 3:3:   'Button' is defined but never used          no-unused-vars
+  Line 4:3:   'Form' is defined but never used            no-unused-vars
+  Line 8:3:   'FormText' is defined but never used        no-unused-vars
+  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
+  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
+
+./src/components/Home.js
+  Line 1:17:  'Component' is defined but never used  no-unused-vars
+  Line 3:20:  'Router' is defined but never used     no-unused-vars
+  Line 4:3:   'Switch' is defined but never used     no-unused-vars
+  Line 5:3:   'Route' is defined but never used      no-unused-vars
+  Line 12:8:  'Profile' is defined but never used    no-unused-vars
+
+./src/components/Exams.js
+  Line 1:17:  'Component' is defined but never used  no-unused-vars
+  Line 3:3:   'Button' is defined but never used     no-unused-vars
+  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
+  Line 6:3:   'Label' is defined but never used      no-unused-vars
+  Line 7:3:   'Input' is defined but never used      no-unused-vars
+
+./src/App.js
+  Line 6:3:   'Link' is defined but never used            no-unused-vars
+  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
+  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
+
+./src/components/TopNav.js
+  Line 9:3:    'NavItem' is defined but never used                 no-unused-vars
+  Line 10:3:   'NavLink' is defined but never used                 no-unused-vars
+  Line 17:3:   'Route' is defined but never used                   no-unused-vars
+  Line 25:10:  'handle_logout' is assigned a value but never used  no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+Compiling...
+Compiled with warnings.
+
+./src/components/LoginModal.js
+  Line 13:3:   'FormText' is defined but never used         no-unused-vars
+  Line 17:3:   'Route' is defined but never used            no-unused-vars
+  Line 18:3:   'Link' is defined but never used             no-unused-vars
+  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
+  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
+  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
+
+./src/components/SignupModal.js
+  Line 13:3:   'FormText' is defined but never used         no-unused-vars
+  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
+
+./src/components/Profile.js
+  Line 1:17:    'Component' is defined but never used            no-unused-vars
+  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
+  Line 6:3:     'Label' is defined but never used                no-unused-vars
+  Line 7:3:     'Input' is defined but never used                no-unused-vars
+  Line 8:3:     'FormText' is defined but never used             no-unused-vars
+  Line 102:23:  'hasChanged' is assigned a value but never used  no-unused-vars
+
+./src/components/ReadOnlyProfile.js
+  Line 1:17:    'Component' is defined but never used            no-unused-vars
+  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
+  Line 6:3:     'Label' is defined but never used                no-unused-vars
+  Line 7:3:     'Input' is defined but never used                no-unused-vars
+  Line 8:3:     'FormText' is defined but never used             no-unused-vars
+  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
+
+./src/components/Pay.js
+  Line 1:17:    'Component' is defined but never used           no-unused-vars
+  Line 8:3:     'FormText' is defined but never used            no-unused-vars
+  Line 14:3:    'Route' is defined but never used               no-unused-vars
+  Line 17:8:    'ExamInfo' is defined but never used            no-unused-vars
+  Line 117:17:  'orderInfo' is assigned a value but never used  no-unused-vars
+
+./src/components/examInfo.js
+  Line 1:17:   'Component' is defined but never used      no-unused-vars
+  Line 3:3:    'Button' is defined but never used         no-unused-vars
+  Line 7:3:    'Input' is defined but never used          no-unused-vars
+  Line 13:3:   'Link' is defined but never used           no-unused-vars
+  Line 31:7:   Duplicate key 'student_id'                 no-dupe-keys
+  Line 44:11:  'data' is assigned a value but never used  no-unused-vars
+  Line 98:18:  Expected '===' and instead saw '=='        eqeqeq
+
+./src/components/BaseProfile.js
+  Line 1:17:  'Component' is defined but never used       no-unused-vars
+  Line 3:3:   'Button' is defined but never used          no-unused-vars
+  Line 4:3:   'Form' is defined but never used            no-unused-vars
+  Line 8:3:   'FormText' is defined but never used        no-unused-vars
+  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
+  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
+
+./src/components/Home.js
+  Line 1:17:  'Component' is defined but never used  no-unused-vars
+  Line 3:20:  'Router' is defined but never used     no-unused-vars
+  Line 4:3:   'Switch' is defined but never used     no-unused-vars
+  Line 5:3:   'Route' is defined but never used      no-unused-vars
+  Line 12:8:  'Profile' is defined but never used    no-unused-vars
+
+./src/components/Exams.js
+  Line 1:17:  'Component' is defined but never used  no-unused-vars
+  Line 3:3:   'Button' is defined but never used     no-unused-vars
+  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
+  Line 6:3:   'Label' is defined but never used      no-unused-vars
+  Line 7:3:   'Input' is defined but never used      no-unused-vars
+
+./src/App.js
+  Line 6:3:   'Link' is defined but never used            no-unused-vars
+  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
+  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
+
+./src/components/TopNav.js
+  Line 9:3:    'NavItem' is defined but never used                 no-unused-vars
+  Line 10:3:   'NavLink' is defined but never used                 no-unused-vars
+  Line 17:3:   'Route' is defined but never used                   no-unused-vars
+  Line 25:10:  'handle_logout' is assigned a value but never used  no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+Compiling...
+Compiled with warnings.
+
+./src/components/LoginModal.js
+  Line 13:3:   'FormText' is defined but never used         no-unused-vars
+  Line 17:3:   'Route' is defined but never used            no-unused-vars
+  Line 18:3:   'Link' is defined but never used             no-unused-vars
+  Line 45:21:  'toggle' is assigned a value but never used  no-unused-vars
+  Line 61:13:  'isOpen' is assigned a value but never used  no-unused-vars
+  Line 61:29:  'onSave' is assigned a value but never used  no-unused-vars
+
+./src/components/SignupModal.js
+  Line 13:3:   'FormText' is defined but never used         no-unused-vars
+  Line 39:21:  'toggle' is assigned a value but never used  no-unused-vars
+
+./src/components/Profile.js
+  Line 1:17:    'Component' is defined but never used            no-unused-vars
+  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
+  Line 6:3:     'Label' is defined but never used                no-unused-vars
+  Line 7:3:     'Input' is defined but never used                no-unused-vars
+  Line 8:3:     'FormText' is defined but never used             no-unused-vars
+  Line 102:23:  'hasChanged' is assigned a value but never used  no-unused-vars
+
+./src/components/ReadOnlyProfile.js
+  Line 1:17:    'Component' is defined but never used            no-unused-vars
+  Line 5:3:     'FormGroup' is defined but never used            no-unused-vars
+  Line 6:3:     'Label' is defined but never used                no-unused-vars
+  Line 7:3:     'Input' is defined but never used                no-unused-vars
+  Line 8:3:     'FormText' is defined but never used             no-unused-vars
+  Line 104:23:  'hasChanged' is assigned a value but never used  no-unused-vars
+
+./src/components/Pay.js
+  Line 1:17:    'Component' is defined but never used           no-unused-vars
+  Line 8:3:     'FormText' is defined but never used            no-unused-vars
+  Line 14:3:    'Route' is defined but never used               no-unused-vars
+  Line 17:8:    'ExamInfo' is defined but never used            no-unused-vars
+  Line 117:17:  'orderInfo' is assigned a value but never used  no-unused-vars
+
+./src/components/examInfo.js
+  Line 1:17:    'Component' is defined but never used      no-unused-vars
+  Line 3:3:     'Button' is defined but never used         no-unused-vars
+  Line 7:3:     'Input' is defined but never used          no-unused-vars
+  Line 13:3:    'Link' is defined but never used           no-unused-vars
+  Line 31:9:    Duplicate key 'student_id'                 no-dupe-keys
+  Line 45:11:   'data' is assigned a value but never used  no-unused-vars
+  Line 101:18:  Expected '===' and instead saw '=='        eqeqeq
+
+./src/components/BaseProfile.js
+  Line 1:17:  'Component' is defined but never used       no-unused-vars
+  Line 3:3:   'Button' is defined but never used          no-unused-vars
+  Line 4:3:   'Form' is defined but never used            no-unused-vars
+  Line 8:3:   'FormText' is defined but never used        no-unused-vars
+  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
+  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
+
+./src/components/Home.js
+  Line 1:17:  'Component' is defined but never used  no-unused-vars
+  Line 3:20:  'Router' is defined but never used     no-unused-vars
+  Line 4:3:   'Switch' is defined but never used     no-unused-vars
+  Line 5:3:   'Route' is defined but never used      no-unused-vars
+  Line 12:8:  'Profile' is defined but never used    no-unused-vars
+
+./src/components/Exams.js
+  Line 1:17:  'Component' is defined but never used  no-unused-vars
+  Line 3:3:   'Button' is defined but never used     no-unused-vars
+  Line 5:3:   'FormGroup' is defined but never used  no-unused-vars
+  Line 6:3:   'Label' is defined but never used      no-unused-vars
+  Line 7:3:   'Input' is defined but never used      no-unused-vars
+
+./src/App.js
+  Line 6:3:   'Link' is defined but never used            no-unused-vars
+  Line 9:3:   'Breadcrumb' is defined but never used      no-unused-vars
+  Line 10:3:  'BreadcrumbItem' is defined but never used  no-unused-vars
+
+./src/components/TopNav.js
+  Line 9:3:    'NavItem' is defined but never used                 no-unused-vars
+  Line 10:3:   'NavLink' is defined but never used                 no-unused-vars
+  Line 17:3:   'Route' is defined but never used                   no-unused-vars
+  Line 25:10:  'handle_logout' is assigned a value but never used  no-unused-vars
 
 Search for the keywords to learn more about each warning.
 To ignore, add // eslint-disable-next-line to the line before.

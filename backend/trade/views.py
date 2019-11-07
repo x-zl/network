@@ -1,4 +1,4 @@
-
+from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
@@ -9,7 +9,7 @@ from rest_framework import permissions, status
 
 from .settings import ALIPAY_APPID, APP_PRIVATE_KEY_PATH, ALIPAY_PUBLIC_KEY_PATH, ALIPAY_DEBUG, ALIPAY_URL
 from .models import OrderInfo, ExamInfo
-from .serializers import OrderInfoSerializer
+from .serializers import OrderInfoSerializer, examInfoSerializer
 from .utils.tools import get_server_ip, create_alipay, get_alipay_url, generate_trade_no
 
 # Create your views here.
@@ -36,11 +36,15 @@ class OrderView(APIView):
 
         alipay = create_alipay()
         result = alipay.api_alipay_trade_query(out_trade_no=trade_no)
-
+        print("====trade_no====")
+        print(trade_no)
         if result:
+            print("---in-result---")
             try:
                 order=OrderInfo.objects.get(trade_no=trade_no)
+                print("---in-try---")
             except:
+                print("---in-except---")
                 return Response({'pay_status': 'invalid trade_no', 'finished': 'false'})
             # if order.pay_status = 'success':
 
@@ -76,6 +80,38 @@ class OrderView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(data={'errmsg': 'invalid user'}, status=status.HTTP_400_BAD_REQUEST)
+
+# accounts/current_users for did mount
+@api_view(['GET'])
+def exam_info(request):
+    user = request.user
+    if not user.is_authenticated:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    print('userid', request.user.id)
+    params = request.query_params.dict()
+    print('send data', params)
+    exam_number = params.get('exam_number', None)
+    if exam_number == None:
+        return Response({'pay_status': 'no exam_number'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    try:
+        examInfo = ExamInfo.objects.get(user=request.user, exam_number=exam_number)
+        print(examInfo)
+        print("---in-try----")
+    except:
+        print("---in-except----")
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+    serializer = examInfoSerializer(examInfo)
+    print("---serializer.data---")
+    print(examInfo)
+    print(serializer.data)
+    return Response(serializer.data)
+    return Response(serializers.errors, status=HTTP_400_BAD_REQUEST)
+
+
+
 
 # 支付宝跨域请求
 class AliPayAPI(APIView):

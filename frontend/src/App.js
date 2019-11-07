@@ -34,6 +34,8 @@ class App extends Component {
       logged_in: false,
       username: '',
       errmsg: '',
+      exam_number: '',
+      pay: false,
     };
   }
 
@@ -56,6 +58,10 @@ class App extends Component {
           console.log("error is", err);
         });
     }
+  }
+
+  handle_query_exam = (exam_number, pay) => {
+    this.setState({exam_number, pay,});
   }
 
   handle_login = (data) => {
@@ -166,7 +172,8 @@ class App extends Component {
               />
             </Route>
             <Route exact path="/profile/pay">
-              <Pay handle_expired_error={this.handle_expired_error}/>
+              <Pay handle_expired_error={this.handle_expired_error}
+                handle_query_exam={this.handle_query_exam} />
             </Route>
             <Route exact path="/profile">
               <Profile handle_expired_error={this.handle_expired_error}/>
@@ -176,6 +183,9 @@ class App extends Component {
             </Route>
             <Route exact path="/check/exams">
               <Exams />
+            </Route>
+            <Route exact path='/examInfo'>
+              <ExamInfo exam_number={this.state.exam_number} pay={this.state.pay}/>
             </Route>
 
           </Switch>

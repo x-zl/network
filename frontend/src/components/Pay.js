@@ -14,7 +14,7 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
-import ExamInfo from './examInfo';
+import ExamInfo from './ExamInfo';
 
 import {
   handleResponse,
@@ -67,8 +67,8 @@ export default class Pay extends React.Component {
 
     const url = handleUrl('order/', data)
     console.log("url: ", url)
+    // this.pay_success();
 
-    
     fetch(url, {
       method: 'GET',
       headers: handleHeaderWithAuthToken(),
@@ -76,11 +76,11 @@ export default class Pay extends React.Component {
       .then(res => handleResponse(res))
       .then(json => {
         console.log(json);
+        console.log(json.finished);
         if (json.finished === 'true') {
           console.log(json)
-          // TODO 支付成功可以跳转，得到生成的考生号，考场号
-          //this.setState({pay_status: 'success'});
-          this.pay_success();
+          this.pay_success()
+
         } else {
           // TODO 支付失败不跳转，显示未成功
           this.setState({pay_status: 'failed'});
@@ -90,7 +90,7 @@ export default class Pay extends React.Component {
         this.props.handle_expired_error(err);
         console.log("order unsuccessful", err);
       });
-      
+
   }
 
   handle_pay = () => {

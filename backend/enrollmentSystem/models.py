@@ -12,9 +12,6 @@ class Profile(models.Model):
     IDCard = models.CharField(null=True, unique=True, max_length=50)
     phone_number = models.CharField(null=True, blank=True, max_length=10)
     birth_date = models.DateField(null=True, blank=True)
-    # read_only
-    grade = models.PositiveIntegerField(null=True)
-    pay_status = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.user.username}'

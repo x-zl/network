@@ -20,6 +20,7 @@ class SignupModal extends React.Component {
     this.state = {
       username: '',
       password: '',
+      email: '',
       errorMessage: '',
     };
   }
@@ -44,8 +45,8 @@ class SignupModal extends React.Component {
         // toggle();
       });
     } else {
-      this.setState({errorMessage: 'wrong password'}, () => {
-        console.log('wrong password');
+      this.setState({errorMessage: 'xx'}, () => {
+
       })
     }
   }
@@ -77,7 +78,17 @@ class SignupModal extends React.Component {
                 name="password"
                 value={this.state.password}
                 onChange={this.handleChange}
-                placeholder="Enter Password"
+                placeholder="enter Password"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="email">Email</Label>
+              <Input
+                type="email"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+                placeholder="enter email"
               />
             </FormGroup>
           </Form>

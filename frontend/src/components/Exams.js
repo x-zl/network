@@ -14,15 +14,26 @@ import {
   handleUrl,
 } from '../fetchClient/fetchHandler';
 
-export default class Exams  extends React.Component {
+const ExamMap = {
+  '1':'四级',
+  '2':'六级',
+  '3':'计算机等级考试',
+};
+
+
+export default class Exams extends React.Component {
   constructor(props) {
+    console.log('exams, constructor')
     super(props);
-    this.number = 0;
-    this.exams = undefined;
+    this.state = {
+      number: 0,
+    }
+    this.exams = [];
   }
 
 
   componentDidMount() {
+    console.log('didmount')
     this.query_exams()
   }
 
@@ -33,7 +44,10 @@ export default class Exams  extends React.Component {
     })
       .then(res => handleResponse(res))
       .then(json => {
-        this.exams = {...json};
+        for (let [key, exam] of Object.entries(json)) {
+          this.exams.push(exam);
+        }
+        this.number = this.exams.length
         console.log("get exams", json);
       })
       .catch(err => {
@@ -42,27 +56,33 @@ export default class Exams  extends React.Component {
   }
 
   render() {
-    console.log("exams render");
-    const content = this.number > 0 ? (
-      <Table hover>
+    console.log("exams render", this.state.number, this.exams);
+    const content = this.exams.length > 0 ? (
+      <Table style={{margin: "auto", width: "700px"}} hover>
         <thead>
           <tr>
             <th>#考试信息</th>
             <th>考试类型</th>
             <th>考场号</th>
+            <th>座位号</th>
             <th>考号</th>
+            <th>成绩</th>
           </tr>
         </thead>
         <tbody>
           {
-          this.exams.map((index, exam) => (
-            <tr key="index">
-              <th scope="row">index</th>
-              <td>exam.exam_number</td>
-              <td>exam.class_number</td>
-              <td>exam.exam_id</td>
+
+          this.exams.map((exam, index) => (
+            <tr key={index}>
+              <th scope="row">{index}</th>
+              <td>{ExamMap[exam.exam_number]}</td>
+              <td>{exam.class_number}</td>
+              <td>{exam.student_id}</td>
+              <td>{exam.exam_id}</td>
+              <td>{exam.grade==0?"未考/待考":exam.grade}</td>
             </tr>
           ))
+
           }
         </tbody>
       </Table>

@@ -3,12 +3,11 @@ import time
 
 from .models import OrderInfo, ExamInfo
 
-class examInfoSerializer(serializers.ModelSerializer):
+class ExamInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ExamInfo
         fields = ('name', 'IDCard', 'student_id', 'exam_id', 'class_number', 'exam_number', 'grade')
-
 
 class OrderInfoSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(
@@ -22,7 +21,7 @@ class OrderInfoSerializer(serializers.ModelSerializer):
 
 
     def generate_trade_no(self, exam_number):
-        suffix = '3298103822'
+        suffix = '329810381'
         trade_no = "{suffix}{exam_number}{userid}".format(suffix=suffix, exam_number=exam_number,
             userid=self.context["request"].user.id)
         return trade_no
@@ -41,5 +40,5 @@ class OrderInfoSerializer(serializers.ModelSerializer):
         return instance
 
     class Meta:
-        model = OrderInfo
+        model = ExamInfo
         fields = "__all__"

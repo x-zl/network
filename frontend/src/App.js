@@ -10,11 +10,12 @@ import {
   BreadcrumbItem,
 } from 'reactstrap'
 
-import ExamInfo from './components/examInfo'
+import ExamInfo from './components/ExamInfo'
 import Profile from './components/Profile';
 import ReadOnlyProfile from './components/ReadOnlyProfile';
 import Home from "./components/Home"
 import TopNav from './components/TopNav';
+import ResetModal from './components/ResetModal';
 import LoginModal from './components/LoginModal';
 import SignupModal from './components/SignupModal';
 import Pay from "./components/Pay";
@@ -113,6 +114,43 @@ class App extends Component {
       });
   };
 
+  handle_reset = (data) => {
+    console.log("send", data, "to /reset");
+    fetch(handleUrl('user/reset/'), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => handleResponse(res))
+      .then(json => {
+        console.log(json)
+        return json;
+      }).catch(err => {
+        console.log("send error", err);
+        return false;
+      });
+  };
+
+  handle_reset_email = () => {
+    console.log("get from user/reset/");
+    fetch(handleUrl('user/reset/'), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(res => handleResponse(res))
+      .then(json => {
+        console.log(json)
+        return json;
+      }).catch(err => {
+        console.log("send error", err);
+        return false;
+      });
+  };
+
   handle_logout = () => {
     localStorage.removeItem('token');
     this.setState({ logged_in: false, username: '' });
@@ -154,6 +192,7 @@ class App extends Component {
             <LoginModal
               isOpen={true}
               toggle={this.display_form}
+              sendEmail={this.handle_reset_email}
               onSave={this.handle_login}
             />
           }
@@ -162,6 +201,13 @@ class App extends Component {
               isOpen={true}
               toggle={this.display_form}
               onSave={this.handle_signup}
+            />
+          }
+          {display === 'reset' &&
+            <ResetModal
+              isOpen={true}
+              toggle={this.display_form}
+              onSave={this.handle_reset}
             />
           }
           <Switch>

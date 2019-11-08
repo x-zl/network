@@ -59,7 +59,7 @@ const TopNav = (props) => {
             查询信息
           </DropdownItem>
         </Link>
-        <Link to='/check/exam'>
+        <Link to='/check/exams'>
           <DropdownItem>
             查询考试
           </DropdownItem>

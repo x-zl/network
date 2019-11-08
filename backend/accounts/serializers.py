@@ -25,6 +25,11 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         label="密码",
         max_length=64
     );
+    email = serializers.CharField(
+        write_only=True,
+        label="邮箱",
+        max_length=64
+    );
     username = serializers.CharField(
         help_text='Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.',
         max_length=150,
@@ -45,12 +50,18 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
+        print("----sign up data----")
+        print(validated_data)
+        email = validated_data.pop('email', None)
+        print(email)
         instance = self.Meta.model(**validated_data)
         if password is not None:
             instance.set_password(password)
+        if email is not None:
+            instance.email = email
         instance.save()
         return instance
 
     class Meta:
         model = User
-        fields = ('token', 'username', 'password')
+        fields = ('token', 'username', 'password', 'email')

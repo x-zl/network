@@ -57,4 +57,4 @@ class ExamInfo(models.Model):
         verbose_name_plural = verbose_name = '考试信息'
 
     def __str__(self):
-        return "{}".format(self.name)
+        return "{0}{1}".format(self.name, self.exam_number)

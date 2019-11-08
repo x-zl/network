@@ -1,5 +1,6 @@
 from .alipay import AliPay
 from trade.settings import ALIPAY_APPID, APP_PRIVATE_KEY_PATH, ALIPAY_PUBLIC_KEY_PATH, ALIPAY_DEBUG, ALIPAY_URL
+
 def get_server_ip():
     return '47.100.162.64'
 
@@ -30,7 +31,7 @@ def get_alipay_url(alipay, total_amount, trade_no):
 
 
 def generate_trade_no(user_id, exam_number):
-    prefix = '3298103822'
+    prefix = '329810381'
     trade_no = "{prefix}{exam_number}{userid}".format(prefix=prefix, exam_number=exam_number,
         userid=user_id)
     return trade_no

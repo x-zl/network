@@ -20,9 +20,10 @@ import {
 
 class LoginModal extends React.Component {
   state = {
-    user: {
-      username: '',
+    formInfo: {
+      code: '',
       password: '',
+      password2: '',
     },
     errorMessage: ''
   };
@@ -31,78 +32,86 @@ class LoginModal extends React.Component {
     const name = e.target.name;
     const value = e.target.value;
     this.setState(prevstate => {
-      const newUser = { ...prevstate.user };
-      newUser[name] = value;
+      const newFormInfo = { ...prevstate.formInfo };
+      newFormInfo[name] = value;
       const newState = { ...prevstate };
-      newState.user = newUser;
+      newState.forInfo = newFormInfo;
       newState.errorMessage = '';
       return newState;
     });
   }
 
   submit = e => {
-    const { user } = this.state;
+    const { formInfo } = this.state;
     const { onSave, toggle } = this.props;
-    const validationSuccess = onSave(user);
-    if (validationSuccess === true) {
+    const { password, password2, code } = formInfo;
+    if (password !== password2) {
+      this.setState({errorMessage: '两次密码不一致'});
+      return;
+    }
+    const result = onSave({
+      'password': password,
+      'code': code,
+    });
+    if (result) {
+      console.log(result);
+      /*
       this.setState({errorMessage: ''}, () => {
-        // console.log('validation success');
-        toggle();
+        toggle('login');
       });
+      */
     } else {
-      this.setState({errorMessage: 'wrong password'}, () => {
-        console.log('wrong password');
-      })
+      console.log('reset failed')
     }
   }
 
   render() {
-    const { errorMessage } = this.state;
+    const { errorMessage, formInfo } = this.state;
+    const { code, password, password2 } = formInfo;
     const { isOpen, toggle, onSave } = this.props;
     return (
       <Modal isOpen={true} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Log in</ModalHeader>
+        <ModalHeader toggle={toggle}>Reset Password</ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
               {/*for = htmlFor ?*/}
-              <Label for="username">Username</Label>
+              <Label for="code">Verify Code</Label>
+              <FormFeedback invalid={errorMessage!==''}>{errorMessage}</FormFeedback>
               <Input
                 type="text"
-                name="username"
-                value={this.state.username}
+                name="code"
+                value={code}
                 onChange={this.handleChange}
-                placeholder="Enter UserName"
+                placeholder="Enter Verify Code"
               />
             </FormGroup>
             <FormGroup>
-              <Label for="password">Password</Label>
-              <FormFeedback invalid={errorMessage!==''}>{errorMessage}</FormFeedback>
+              <Label for="password">New Password</Label>
+
               <Input
                 type="password"
                 name="password"
-                value={this.state.password}
+                value={password}
                 onChange={this.handleChange}
-                placeholder="Enter Password"
+                placeholder="Enter New Password"
               />
-              <a href="#" onClick={() => {
-                if (this.state.username) {
-                  this.props.sendEmail({'username': this.state.username})
-                  toggle('reset');
-                }
-              }} style={{fontSize: "small"}}>忘记密码？点击找回</a>
+            </FormGroup>
+            <FormGroup>
+              <Label for="password2">New Password</Label>
+              <Input
+                type="password"
+                name="password2"
+                value={password2}
+                onChange={this.handleChange}
+                placeholder="Confirm New Password"
+              />
             </FormGroup>
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="info" outline
-            onClick={() => {toggle('signup')} }
-            size="sm"
-            >
-            Sign up first
-          </Button>
           <Button color="success" onClick={this.submit}>
-            Submit
+            reser password
           </Button>
         </ModalFooter>
       </Modal>

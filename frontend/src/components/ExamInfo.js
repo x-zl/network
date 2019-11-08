@@ -18,11 +18,18 @@ import {
   handleUrl,
 } from '../fetchClient/fetchHandler';
 
+const ExamMap = {
+  '1':'四级',
+  '2':'六级',
+  '3':'计算机等级考试',
+};
+
+
 export default class ExamInfo extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
-    this.state = { 
+    console.log(props);
+    this.state = {
       examInfo: {
         exam_number: this.props.exam_number || '',
         student_id: '',
@@ -37,7 +44,7 @@ export default class ExamInfo extends React.Component {
   }
   // TODO
   componentDidMount() {
-    this.query_exam()
+    this.query_exam();
   }
 
   query_exam = () => {
@@ -57,7 +64,6 @@ export default class ExamInfo extends React.Component {
         let examInfo = {...this.state.examInfo}
         examInfo = {...examInfo, ...json};
         this.setState({examInfo})
-        console.log(json);
       })
       .catch(err => {
         console.log("exam query unsuccessful", err);
@@ -68,6 +74,8 @@ export default class ExamInfo extends React.Component {
     console.log(this.props, this.state);
     const {
       name,
+      exam_id,
+      IDCard,
       exam_number,
       student_id,
       grade,
@@ -90,11 +98,19 @@ export default class ExamInfo extends React.Component {
             <FormText>{name}</FormText>
           </FormGroup>
           <FormGroup>
-            <Label>考试类型</Label>
-            <FormText>{exam_number}</FormText>
+            <Label>考号</Label>
+            <FormText>{exam_id}</FormText>
           </FormGroup>
           <FormGroup>
-            <Label>考生号</Label>
+            <Label>身份证号</Label>
+            <FormText>{IDCard}</FormText>
+          </FormGroup>
+          <FormGroup>
+            <Label>考试类型</Label>
+            <FormText>{ExamMap[exam_number]}</FormText>
+          </FormGroup>
+          <FormGroup>
+            <Label>考生序号</Label>
             <FormText>{student_id}</FormText>
           </FormGroup>
           {this.props.pay && <FormText color='success'>报名成功!</FormText>}

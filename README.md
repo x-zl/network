@@ -1,2 +1,3 @@
-# online-enrollment-system
-an online enrollment system for HFUT network assignment
+# Examination registration and query system
+a system for HFUT network assignment
+work with kirisamejin  --->  https://github.com/kirisamejin/online-enrollment-system

@@ -21,6 +21,7 @@ import {
 class LoginModal extends React.Component {
   state = {
     formInfo: {
+      username: '',
       code: '',
       password: '',
       password2: '',
@@ -32,11 +33,9 @@ class LoginModal extends React.Component {
     const name = e.target.name;
     const value = e.target.value;
     this.setState(prevstate => {
-      const newFormInfo = { ...prevstate.formInfo };
-      newFormInfo[name] = value;
-      const newState = { ...prevstate };
-      newState.forInfo = newFormInfo;
-      newState.errorMessage = '';
+      const formInfo = { ...prevstate.formInfo, [name]: value };
+      const errorMessage = '';
+      const newState = {formInfo, errorMessage}
       return newState;
     });
   }
@@ -44,30 +43,36 @@ class LoginModal extends React.Component {
   submit = e => {
     const { formInfo } = this.state;
     const { onSave, toggle } = this.props;
-    const { password, password2, code } = formInfo;
+    const { username, password, password2, code } = formInfo;
+    if (!username || !password || !password2 || !code) {
+      this.setState({errorMessage: '请填写完整'});
+      return;
+    }
     if (password !== password2) {
       this.setState({errorMessage: '两次密码不一致'});
       return;
     }
-    const result = onSave({
+
+    let res = onSave({
+      'username': username,
       'password': password,
       'code': code,
-    });
-    if (result) {
-      console.log(result);
-      /*
-      this.setState({errorMessage: ''}, () => {
-        toggle('login');
+    })
+    console.log(res);
+    if (res) {
+      res.then(json => {
+        console.log(json)
+        this.setState({errorMessage: ''}, () => {
+          toggle('login');
+        });
       });
-      */
-    } else {
-      console.log('reset failed')
     }
   }
 
   render() {
     const { errorMessage, formInfo } = this.state;
-    const { code, password, password2 } = formInfo;
+    console.log(this.state);
+    const { username, code, password, password2 } = formInfo;
     const { isOpen, toggle, onSave } = this.props;
     return (
       <Modal isOpen={true} toggle={toggle}>
@@ -76,8 +81,19 @@ class LoginModal extends React.Component {
           <Form>
             <FormGroup>
               {/*for = htmlFor ?*/}
+              <Label for="username">username</Label>
+              <Input
+                type="text"
+                name="username"
+                value={username}
+                onChange={this.handleChange}
+                placeholder="Enter username"
+              />
+            </FormGroup>
+            <FormGroup>
+              {/*for = htmlFor ?*/}
               <Label for="code">Verify Code</Label>
-              <FormFeedback invalid={errorMessage!==''}>{errorMessage}</FormFeedback>
+              <span style={{color: 'red', fontSize: 'small'}}>{errorMessage}</span>
               <Input
                 type="text"
                 name="code"
@@ -111,7 +127,7 @@ class LoginModal extends React.Component {
         </ModalBody>
         <ModalFooter>
           <Button color="success" onClick={this.submit}>
-            reser password
+            reset password
           </Button>
         </ModalFooter>
       </Modal>

@@ -49,7 +49,7 @@ class OrderView(APIView):
             return Response({'pay_status': 'no exam_number'}, status=HTTP_400_BAD_REQUEST)
 
         trade_no = generate_trade_no(request.user.id, exam_number)
-        print('trade_no: ', trade_no)
+
         alipay = create_alipay()
         result = alipay.api_alipay_trade_query(out_trade_no=trade_no)
 
@@ -168,10 +168,8 @@ class AliPayAPI(APIView):
 class ExamAPI(APIView):
     def get(self, request, **kwargs):
         user = request.user
-        print("---ExamAPI---")
         # serializer = UserSerializer(user)
         if user.is_authenticated:
-            print("---ExamAPI-ok--")
             exams = ExamInfo.objects.filter(user=user)
             exams_serializer = ExamInfoSerializer(exams, many=True)
             return Response(exams_serializer.data)

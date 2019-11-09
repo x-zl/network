@@ -76,7 +76,6 @@ export default class Pay extends React.Component {
       .then(res => handleResponse(res))
       .then(json => {
         console.log(json);
-        console.log(json.finished);
         if (json.finished === 'true') {
           console.log(json)
           this.pay_success()

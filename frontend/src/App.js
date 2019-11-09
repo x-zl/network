@@ -67,7 +67,7 @@ class App extends Component {
 
   handle_login = (data) => {
     console.log("send", data, "to /token-auth");
-    fetch(handleUrl('token-auth/'), {
+    return fetch(handleUrl('token-auth/'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -76,22 +76,22 @@ class App extends Component {
     })
       .then(res => handleResponse(res))
       .then(json => {
+        console.log(json)
         localStorage.setItem('token', json.token);
         this.setState({
           logged_in: true,
           displayed_form: '',
           username: json.user.username
         });
-        return true;
+        return Promise.resolve(json)
       }).catch(err => {
         console.log("login error", err);
-        return false;
       });
   };
 
   handle_signup = (data) => {
     console.log("send", data, "to /accounts/users");
-    fetch(handleUrl('accounts/users/'), {
+    return fetch(handleUrl('accounts/users/'), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -107,53 +107,54 @@ class App extends Component {
           username: json.username,
           errmsg: '',
         });
-        return true;
+        return Promise.resolve(json)
       }).catch(err => {
         console.log("signup error", err);
-        return false;
       });
   };
 
   handle_reset = (data) => {
-    console.log("send", data, "to /reset");
-    fetch(handleUrl('user/reset/'), {
+    console.log("send", data, "to accounts/reset");
+    return fetch(handleUrl('accounts/reset/'), {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
       .then(res => handleResponse(res))
       .then(json => {
         console.log(json)
-        return json;
+        return Promise.resolve(json)
       }).catch(err => {
         console.log("send error", err);
-        return false;
+        return Promise.resolve(err)
       });
   };
 
-  handle_reset_email = () => {
-    console.log("get from user/reset/");
-    fetch(handleUrl('user/reset/'), {
+  handle_reset_email = (data) => {
+    console.log("sent",data,"accounts/reset/");
+    return fetch(handleUrl('accounts/reset/', data), {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
     })
       .then(res => handleResponse(res))
       .then(json => {
         console.log(json)
-        return json;
+        return Promise.resolve(json)
       }).catch(err => {
         console.log("send error", err);
-        return false;
+        return Promise.resolve(err)
       });
   };
 
   handle_logout = () => {
     localStorage.removeItem('token');
-    this.setState({ logged_in: false, username: '' });
+    this.setState({ logged_in: false, username: '' }, () => {
+      window.location.href = '/';
+    });
   };
 
   handle_toggle = () => {

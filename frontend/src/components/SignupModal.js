@@ -39,16 +39,6 @@ class SignupModal extends React.Component {
     const { user } = this.state;
     const { onSave, toggle } = this.props;
     const validationSuccess = onSave(user);
-    if (validationSuccess === true) {
-      this.setState({errorMessage: ''}, () => {
-        // console.log('validation success');
-        // toggle();
-      });
-    } else {
-      this.setState({errorMessage: 'xx'}, () => {
-
-      })
-    }
   }
 
   render() {

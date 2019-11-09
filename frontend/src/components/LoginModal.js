@@ -44,20 +44,12 @@ class LoginModal extends React.Component {
     const { user } = this.state;
     const { onSave, toggle } = this.props;
     const validationSuccess = onSave(user);
-    if (validationSuccess === true) {
-      this.setState({errorMessage: ''}, () => {
-        // console.log('validation success');
-        toggle();
-      });
-    } else {
-      this.setState({errorMessage: 'wrong password'}, () => {
-        console.log('wrong password');
-      })
-    }
   }
 
   render() {
-    const { errorMessage } = this.state;
+    const { errorMessage, user } = this.state;
+    const { username, password } = user;
+    console.log(this.state);
     const { isOpen, toggle, onSave } = this.props;
     return (
       <Modal isOpen={true} toggle={toggle}>
@@ -70,25 +62,42 @@ class LoginModal extends React.Component {
               <Input
                 type="text"
                 name="username"
-                value={this.state.username}
+                value={username}
                 onChange={this.handleChange}
                 placeholder="Enter UserName"
               />
+              <span style={{color: 'red', fontSize: 'small'}}>{errorMessage}</span>
             </FormGroup>
             <FormGroup>
               <Label for="password">Password</Label>
-              <FormFeedback invalid={errorMessage!==''}>{errorMessage}</FormFeedback>
               <Input
                 type="password"
                 name="password"
-                value={this.state.password}
+                value={password}
                 onChange={this.handleChange}
                 placeholder="Enter Password"
               />
               <a href="#" onClick={() => {
-                if (this.state.username) {
-                  this.props.sendEmail({'username': this.state.username})
-                  toggle('reset');
+                console.log('onClick' ,username);
+                if (username) {
+                  let result = this.props.sendEmail({'username': username})
+                  console.log(result);
+                  result.then(json => {
+                    console.log(json);
+                    if (json.send_status >= 0) {
+                      toggle('reset');
+                    }
+                  })
+                  /*
+                  if (result) {
+                    this.setState({errorMessage: ''})
+                    toggle('reset');
+                  } else {
+                    this.setState({errorMessage: 'send error'})
+                  }
+                  */
+                } else {
+                  this.setState({errorMessage: '请输入用户名'})
                 }
               }} style={{fontSize: "small"}}>忘记密码？点击找回</a>
             </FormGroup>

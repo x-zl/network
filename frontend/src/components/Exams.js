@@ -49,6 +49,7 @@ export default class Exams extends React.Component {
         }
         this.number = this.exams.length
         console.log("get exams", json);
+        this.setState({number: this.exams.length})
       })
       .catch(err => {
         console.log("exams query unsuccessful", err);
@@ -56,15 +57,20 @@ export default class Exams extends React.Component {
   }
 
   render() {
-    console.log("exams render", this.state.number, this.exams);
+    console.log("exams render", this.state.number, this.exams, this.exams.length);
+    if (!this.state.number) {
+      // load
+      return <Label style={{textAlign: "center", display: "block",}} >{'loading'}</Label>
+    }
     const content = this.exams.length > 0 ? (
+      <>
+      <Label style={{textAlign: "center", display: "block"}} >{this.exams[0].name}</Label>
       <Table style={{margin: "auto", width: "700px"}} hover>
         <thead>
           <tr>
-            <th>#考试信息</th>
+            <th>考试信息</th>
             <th>考试类型</th>
             <th>考场号</th>
-            <th>座位号</th>
             <th>考号</th>
             <th>成绩</th>
           </tr>
@@ -77,15 +83,15 @@ export default class Exams extends React.Component {
               <th scope="row">{index}</th>
               <td>{ExamMap[exam.exam_number]}</td>
               <td>{exam.class_number}</td>
-              <td>{exam.student_id}</td>
               <td>{exam.exam_id}</td>
-              <td>{exam.grade==0?"未考/待考":exam.grade}</td>
+              <td>{exam.grade > 0 ? exam.grade : '未考'}</td>
             </tr>
           ))
 
           }
         </tbody>
       </Table>
+      </>
     ) : (
       <Form style={{width: "300px", margin: "auto"}}>
         <FormText color="mute">没有报名考试</FormText>

@@ -21,7 +21,7 @@ class OrderInfoSerializer(serializers.ModelSerializer):
 
 
     def generate_trade_no(self, exam_number):
-        suffix = '329810381'
+        suffix = '3298103866'
         trade_no = "{suffix}{exam_number}{userid}".format(suffix=suffix, exam_number=exam_number,
             userid=self.context["request"].user.id)
         return trade_no

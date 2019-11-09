@@ -31,7 +31,7 @@ def get_alipay_url(alipay, total_amount, trade_no):
 
 
 def generate_trade_no(user_id, exam_number):
-    prefix = '329810381'
+    prefix = '3298103866'
     trade_no = "{prefix}{exam_number}{userid}".format(prefix=prefix, exam_number=exam_number,
         userid=user_id)
     return trade_no
